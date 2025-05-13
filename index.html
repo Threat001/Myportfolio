@@ -3,663 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Artist Portfolio - Charles Ezeike</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Anime.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <title>Charles Ezekiel - 3D Portfolio</title>
   <style>
-    /* Reset and Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f9fa; /* Slightly off-white background */
-      color: #212529; /* Darker primary text color */
-      scroll-behavior: smooth;
-      line-height: 1.7; /* Slightly increased line height */
-      font-weight: 400; /* Default font weight */
-    }
-
-    /* --- Refined Colors --- */
     :root {
-      --primary-blue: #0d2c4f; /* Darker, richer blue */
-      --accent-blue: #007bff; /* Standard professional blue */
-      --light-blue-bg: #e9f3ff; /* Softer light blue */
-      --text-muted: #6c757d; /* Muted text color */
-      --white: #ffffff;
-      --light-gray: #f1f3f5;
-      --border-color: #dee2e6;
+      --bg: #ffffff;
+      --text: #333333;
+      --primary: #fdd835;
+      --secondary: #fffde7;
+      --accent: #fbc02d;
+      --border: #fdd835;
+      --card-bg: #ffffff;
     }
 
-    /* Header Section */
-    header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    body.dark-mode {
+      --bg: #121212;
+      --text: #ffffff;
+      --primary: #333333;
+      --secondary: #1e1e1e;
+      --accent: #ffd600;
+      --border: #424242;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header, footer {
+      background-color: var(--primary);
+      color: var(--text);
+      padding: 20px;
       text-align: center;
-      background: linear-gradient(135deg, var(--light-blue-bg) 0%, #ffffff 100%);
-      position: relative;
-    }
-    header h1 {
-      font-size: 3.2rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: var(--primary-blue);
-    }
-    header p {
-      font-size: 1.3rem;
-      color: var(--text-muted);
-      font-weight: 300;
-      max-width: 600px;
-      margin: 0 auto;
     }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--white);
-      padding: 1rem 0;
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-      border-bottom: 1px solid var(--border-color);
-    }
-    nav a {
-      color: var(--primary-blue);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.25s ease;
-      position: relative;
-      padding-bottom: 5px;
-    }
-    nav a:hover {
-      color: var(--accent-blue);
-    }
-
-    /* General Section Styling */
-    section {
-      padding: 90px 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    h2 {
-      font-size: 2.2rem;
-      font-weight: 600;
-      margin-bottom: 50px;
-      padding-bottom: 10px;
-      border-bottom: 3px solid var(--accent-blue);
-      display: inline-block;
-      color: var(--primary-blue);
-    }
-    section > h2 {
-        display: block;
-        text-align: center;
-        border-bottom: none;
-        margin-bottom: 60px;
-    }
-
-    /* About Section */
-    .about-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-    }
-    .about-content img {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 8px 30px rgba(0, 85, 153, 0.15);
-      flex-shrink: 0;
-      border: 4px solid var(--white);
-    }
-    .about-content p {
-      flex: 1;
-      min-width: 300px;
-      font-size: 1.05rem;
-      color: #343a40;
-      line-height: 1.8;
-    }
-
-    /* Portfolio Section */
-    .portfolio-grid {
-      display: grid;
-      /* Adjusted minmax for potentially narrower vertical items */
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-
-    .portfolio-item {
-      background: var(--white);
-      border-radius: 8px; /* Rounded corners for the whole item */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .portfolio-item:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    .portfolio-item img {
-      display: block;
-      width: 100%; /* Image takes full width of grid item */
-      /* Removed fixed height */
-      aspect-ratio: 3 / 4; /* <<< SET VERTICAL ASPECT RATIO HERE (width / height) */
-      object-fit: cover; /* Cover the area, cropping if needed */
-      /* border-radius: 8px 8px 0 0; */ /* Removed top-only radius */
-      border-radius: 8px; /* Apply border-radius to image itself if no info block */
-      cursor: pointer;
-      transition: transform 0.35s ease;
-    }
-     .portfolio-item:hover img {
-       transform: scale(1.05);
-     }
-
-    /* Optional: Info block styling (if you uncomment it in HTML) */
-    /* .portfolio-item .item-info {
-        padding: 15px;
-        text-align: center;
-    }
-    .portfolio-item .item-info h4 {
-        margin-bottom: 5px;
-        color: var(--primary-blue);
-        font-weight: 600;
-    }
-    .portfolio-item .item-info p {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-    } */
-    /* If using item-info, move border-radius from img to portfolio-item
-       and add border-radius: 8px 8px 0 0; back to the img rule */
-
-
-    /* Love Button */
-    .love-btn {
+    .toggle-container {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--primary-blue);
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      font-size: 1.1rem;
-      line-height: 36px;
+      top: 20px;
+      right: 20px;
+    }
+
+    .toggle-button {
+      background-color: var(--accent);
+      border: none;
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
       text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, opacity 0.3s ease;
-      opacity: 0;
-      transform: scale(0.8);
-      z-index: 2; /* Ensure button is above image */
-    }
-    .portfolio-item:hover .love-btn {
-        opacity: 1;
-        transform: scale(1);
-    }
-    .love-btn:hover {
-        background: var(--accent-blue);
-        color: var(--white);
-        border-color: var(--accent-blue);
-        transform: scale(1.1);
-    }
-    .love-btn.loved {
-         background: #e44d80;
-         color: var(--white);
-         border-color: #e44d80;
+      padding: 80px 20px;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    /* Lightbox */
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(13, 44, 79, 0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1001;
-      cursor: pointer;
-      animation: fadeIn 0.3s ease;
-    }
     @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 5px;
-      box-shadow: 0 0 40px rgba(0, 123, 255, 0.4);
-      object-fit: contain;
-      cursor: default;
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Skills Section */
-    .skills .bar {
-      margin-bottom: 30px;
-    }
-    .bar .info {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       margin-bottom: 8px;
-    }
-    .bar .info h4 {
-      font-weight: 600;
-      color: var(--primary-blue);
-      font-size: 1rem;
+    .hero h1 {
+      font-size: 48px;
       margin: 0;
     }
-     .bar .info span {
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-     }
-    .bar-bg {
-      background: var(--light-gray);
-      height: 8px;
-      border-radius: 4px;
+
+    .hero p {
+      font-size: 20px;
+      margin-top: 10px;
+      border-right: 2px solid var(--text);
+      white-space: nowrap;
       overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-    }
-    .bar-fill {
-      height: 100%;
       width: 0;
-      background: var(--accent-blue);
-      border-radius: 4px;
-      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+      animation: typing 4s steps(60, end) forwards, blink-caret 0.75s step-end infinite;
     }
 
-    /* Contact Section */
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 700px;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      50% { border-color: transparent }
+    }
+
+    section {
+      padding: 40px 0;
+      margin-bottom: 20px;
+    }
+
+    .section-light-gray {
+      background-color: var(--secondary);
+    }
+
+    .section-dark-gray {
+      background-color: var(--primary);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
       margin: 0 auto;
     }
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      padding: 15px 18px;
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      background-color: var(--white);
-      color: #495057;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-        border-color: var(--accent-blue);
-        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
-        outline: none;
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s, color 0.3s;
     }
-    textarea {
-      resize: vertical;
-      min-height: 150px;
+
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
     }
-    button[type="submit"] {
-      padding: 15px 25px;
-      background: var(--accent-blue);
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .button {
+      background-color: var(--accent);
+      color: var(--text);
       border: none;
-      border-radius: 5px;
-      color: var(--white);
-      font-size: 1rem;
-      font-weight: 600;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-    }
-    button[type="submit"]:hover {
-      background: #0056b3;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
-    }
-     button[type="submit"]:active {
-        transform: translateY(0);
-        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
-     }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 80px;
-      background: var(--primary-blue);
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-    }
-    footer a {
-        color: rgba(255, 255, 255, 0.9);
-        text-decoration: none;
-    }
-     footer a:hover {
-        text-decoration: underline;
-     }
-
-
-    /* Responsive Design */
-    @media (max-width: 992px) {
-        section {
-            max-width: 90%;
-        }
-        .portfolio-grid {
-            /* Adjust minmax if needed for vertical */
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
+      text-decoration: none;
+      display: inline-block;
     }
 
-    @media (max-width: 768px) {
-        header h1 { font-size: 2.6rem; }
-        header p { font-size: 1.1rem; }
-        nav { gap: 1.8rem; }
-        section { padding: 70px 15px; }
-        h2 { font-size: 1.9rem; margin-bottom: 40px; }
-        section > h2 { margin-bottom: 50px; }
-
-        .about-content { flex-direction: column; text-align: center; }
-        .about-content img { margin-bottom: 30px; width: 180px; height: 180px; }
-
-        .portfolio-grid {
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-    }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 2.2rem; }
-      header p { font-size: 1rem; }
-      nav { padding: 0.8rem 0; gap: 1.2rem; }
-      nav a { font-size: 0.9rem; }
-      h2 { font-size: 1.7rem; }
-      section > h2 { margin-bottom: 40px; }
-
-       /* Keep 2 columns longer for vertical images if possible */
-       .portfolio-grid {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-       }
-        /* Single column on very narrow screens if needed */
-       @media (max-width: 450px) {
-           .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-           }
-       }
-
-
-       .love-btn {
-           width: 32px; height: 32px; font-size: 1rem; line-height: 32px;
-           top: 10px; right: 10px;
-       }
-       button[type="submit"] { padding: 12px 20px; font-size: 0.95rem; }
+    .button-secondary {
+      background-color: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
     }
   </style>
 </head>
 <body>
-
-<!-- Navigation -->
-<nav>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#skills">Skills</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<!-- Header/Hero Section -->
-<header id="home">
-  <h1 id="hero-text">Charles Ezeike</h1>
-  <p>3D Artist specializing in Modeling, Texturing & Product Visualization</p>
-</header>
-
-<!-- About Section -->
-<section id="about">
-  <h2>About Me</h2>
-  <div class="about-content">
-    <img src="charles-ezeike-profile.jpg" alt="Professional headshot of Charles Ezeike">
-    <p>
-      Hello! I’m Charles Ezeike, a dedicated and detail-oriented 3D artist based in [Your Location - Optional]. I specialize in creating high-quality 3D models, photorealistic textures, and compelling product visualizations that bring concepts to life. With a strong foundation in design principles and proficiency in industry-standard software, I am committed to delivering visually stunning and technically robust digital assets. I thrive on new challenges and continuously seek opportunities to learn and push the boundaries of digital creation.
-    </p>
+  <div class="toggle-container">
+    <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   </div>
-</section>
 
-<!-- Portfolio Section -->
-<section id="portfolio">
-  <h2>My Work</h2>
-  <div class="portfolio-grid">
-    <!-- Items will now display images vertically -->
-    <div class="portfolio-item">
-      <img src="Render1.png" alt="Project Title 1" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-    <div class="portfolio-item">
-      <img src="Render2.png" alt="Project Title 2" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-    <div class="portfolio-item">
-      <img src="Render3.png" alt="Project Title 3" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-     <div class="portfolio-item">
-      <img src="Render4.png" alt="Project Title 4" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-     <div class="portfolio-item">
-      <img src="Render5.png" alt="Project Title 5" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-     <div class="portfolio-item">
-      <img src="Render6.png" alt="Project Title 6" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-     <div class="portfolio-item">
-      <img src="Render7.png" alt="Project Title 7" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-     <div class="portfolio-item">
-      <img src="Render8.png" alt="Project Title 8" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-     <div class="portfolio-item">
-      <img src="Render9.png" alt="Project Title 9" class="lightbox-trigger">
-      <button class="love-btn" title="Add to favorites">♥</button>
-    </div>
-    <!-- End of portfolio items -->
+  <header>
+    <h1>Charles Ezekiel - 3D Portfolio</h1>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to Charles Ezekiel's Portfolio</h1>
+    <p>I’m a 3D Artist passionate about crafting stunning visuals and immersive experiences.</p>
   </div>
-</section>
 
-<!-- Skills Section -->
-<section id="skills" class="skills">
-  <h2>Technical Skills</h2>
-  <div class="bar">
-    <div class="info">
-        <h4>3D Modeling (Blender / Maya)</h4>
-        <span>90%</span>
+  <section class="section-light-gray">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>I’m a 3D designer passionate about crafting interactive visuals and digital experiences. Welcome to my portfolio!</p>
     </div>
-    <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
-  </div>
-  <div class="bar">
-     <div class="info">
-        <h4>Texturing (Substance Painter / Photoshop)</h4>
-        <span>85%</span>
+  </section>
+
+  <section class="section-dark-gray">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Project 1</h3>
+          <p>Short description of the first 3D project goes here.</p>
+          <a href="#" class="button">View More</a>
+        </div>
+        <div class="card">
+          <h3>Project 2</h3>
+          <p>Details about the second design or animation.</p>
+          <a href="#" class="button">View More</a>
+        </div>
+        <div class="card">
+          <h3>Project 3</h3>
+          <p>Overview of the third creative piece.</p>
+          <a href="#" class="button">View More</a>
+        </div>
+      </div>
     </div>
-    <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
-  </div>
-   <div class="bar">
-     <div class="info">
-        <h4>Sculpting (ZBrush / Blender)</h4>
-        <span>75%</span>
+  </section>
+
+  <section class="section-light-gray">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="grid gallery">
+        <img src="https://via.placeholder.com/400x300?text=Render+1" alt="3D Render 1" />
+        <img src="https://via.placeholder.com/400x300?text=Render+2" alt="3D Render 2" />
+        <img src="https://via.placeholder.com/400x300?text=Render+3" alt="3D Render 3" />
+        <img src="https://via.placeholder.com/400x300?text=Render+4" alt="3D Render 4" />
+      </div>
     </div>
-    <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
-  </div>
-  <div class="bar">
-     <div class="info">
-        <h4>Rendering (Cycles / Arnold / Eevee)</h4>
-        <span>80%</span>
+  </section>
+
+  <section class="section-dark-gray">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Let’s connect and bring your ideas to life.</p>
+      <a href="mailto:you@example.com" class="button-secondary">Email Me</a>
     </div>
-    <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
-  </div>
-   <div class="bar">
-     <div class="info">
-        <h4>Product Design Visualization</h4>
-        <span>88%</span>
-    </div>
-    <div class="bar-bg"><div class="bar-fill" data-width="88%"></div></div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact">
-  <h2>Get In Touch</h2>
-  <!-- IMPORTANT: Replace YOUR_FORM_ID with your actual Formspree ID below -->
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
-    <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
-    <textarea name="message" rows="6" placeholder="Your Message" required aria-label="Your Message"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+  <footer>
+    <p>&copy; 2025 Charles Ezekiel. All rights reserved.</p>
+  </footer>
 
-<!-- Lightbox Container -->
-<div class="lightbox" id="lightbox">
-  <img src="" alt="Enlarged portfolio item">
-</div>
-
-<!-- Footer -->
-<footer>
-  © 2024 Charles Ezeike | 3D Artist. All rights reserved.
-</footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-
-    // --- Hero Text Animation ---
-    anime({
-      targets: 'header h1, header p',
-      translateY: [-20, 0],
-      opacity: [0, 1],
-      delay: anime.stagger(150, {start: 300}),
-      duration: 1000,
-      easing: 'easeOutExpo'
-    });
-
-    // --- Smooth Scrolling for Nav Links ---
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const navHeight = document.querySelector('nav').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-
-    // --- Skill Bar Animation on Scroll ---
-    const skillsSection = document.querySelector('#skills');
-    const skillBars = document.querySelectorAll('.bar-fill');
-    let skillsAnimated = false;
-
-    const skillObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !skillsAnimated) {
-                skillBars.forEach(bar => {
-                    const targetWidth = bar.getAttribute('data-width');
-                    anime({
-                        targets: bar,
-                        width: targetWidth,
-                        duration: 1600,
-                        delay: 150,
-                        easing: 'easeInOutSine'
-                    });
-                });
-                skillsAnimated = true;
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    if (skillsSection) {
-        skillObserver.observe(skillsSection);
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
     }
-
-
-    // --- Love Button ---
-    document.querySelectorAll('.love-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        btn.classList.toggle('loved');
-        if (btn.classList.contains('loved')) {
-             btn.innerHTML = '💖';
-        } else {
-            btn.innerHTML = '♥';
-        }
-      });
-    });
-
-
-    // --- Lightbox Functionality ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
-
-    lightboxTriggers.forEach(img => {
-      img.addEventListener('click', (e) => {
-         if (e.target.classList.contains('love-btn')) {
-             return;
-         }
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt || "Enlarged portfolio image";
-        lightbox.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeLightbox() {
-        lightbox.style.display = 'none';
-        document.body.style.overflow = '';
-        lightboxImg.src = "";
-    }
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-             closeLightbox();
-        }
-    });
-
-  }); // End DOMContentLoaded
-</script>
-
+  </script>
 </body>
-        </html>
+</html>
