@@ -3,281 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charles Ezeike - 3D Portfolio</title>
+  <title>3D Artist Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <style>
-    :root {
-      --yellow: #fdd835;
-      --light-yellow: #fffde7;
-      --lighter-yellow: #fff9c4;
-      --text-color: #000;
-      --bg-color: #fff;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(to right, #ffffff, #e0f0ff); color: #000; scroll-behavior: smooth; }
+    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #d0eaff; }
+    nav { position: fixed; top: 0; width: 100%; background: #00000088; backdrop-filter: blur(10px); padding: 1rem; display: flex; justify-content: center; gap: 2rem; z-index: 999; }
+    nav a { color: #fff; text-decoration: none; transition: color 0.3s; }
+    nav a:hover { color: #0077ff; }
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; color: #222; }
 
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      color: var(--text-color);
-      background-color: var(--bg-color);
-    }
+    section { padding: 80px 20px; max-width: 1000px; margin: auto; }
+    h2 { font-size: 2rem; margin-bottom: 20px; border-left: 4px solid #0077ff; padding-left: 10px; }
 
-    header {
-      background-color: var(--yellow);
-      color: var(--text-color);
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
+    .about-content { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+    .about-content img { width: 200px; border-radius: 15px; box-shadow: 0 4px 20px #000; flex-shrink: 0; }
+    .about-content p { flex: 1; min-width: 250px; font-size: 1rem; color: #333; }
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: 2px solid var(--text-color);
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 18px;
-    }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .portfolio-item { background: #ffffff; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; transition: transform 0.3s; }
+    .portfolio-item:hover { transform: scale(1.02); }
 
-    nav {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.5s ease;
-      flex-direction: column;
-      width: 100%;
-      background-color: var(--yellow);
-    }
+    .swiper-slide img { width: 100%; border-radius: 8px; }
 
-    nav.open {
-      max-height: 300px;
-    }
+    .skills .bar { margin-bottom: 20px; }
+    .bar h4 { margin-bottom: 5px; }
+    .bar-bg { background: #ddd; height: 10px; border-radius: 5px; overflow: hidden; }
+    .bar-fill { height: 10px; width: 0; background: #0077ff; transition: width 1s ease-in-out; }
 
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-    }
+    .contact form { display: flex; flex-direction: column; gap: 15px; }
+    input, textarea { padding: 10px; border: none; border-radius: 5px; background: #f0f0f0; color: #000; }
+    button { padding: 10px; background: #0077ff; border: none; border-radius: 5px; color: #fff; cursor: pointer; }
 
-    @media (min-width: 769px) {
-      .menu-toggle {
-        display: none;
-      }
+    footer { text-align: center; padding: 20px; background: #111; color: #ccc; }
 
-      nav {
-        max-height: none;
-        overflow: visible;
-        display: flex !important;
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 0 15px;
-      }
-    }
-
-    .hero {
-      background: linear-gradient(to right, var(--light-yellow), var(--yellow));
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin: 0;
-    }
-
-    .hero p {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-
-    .typewriter {
-      overflow: hidden;
-      border-right: .15em solid var(--text-color);
-      white-space: nowrap;
-      animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
-      font-size: 28px;
+    .love-btn {
       display: inline-block;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: var(--text-color); }
-    }
-
-    section {
-      padding: 40px 0;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-light {
-      background-color: var(--light-yellow);
-    }
-
-    .section-dark {
-      background-color: var(--lighter-yellow);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid var(--yellow);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .button {
-      background-color: #fbc02d;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
+      margin-top: 8px;
+      background: #ff5c5c;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
+      transition: background 0.3s;
     }
+    .love-btn:hover { background: #e60000; }
 
-    .button-secondary {
-      background-color: transparent;
-      color: #fbc02d;
-      border: 1px solid #fbc02d;
-    }
-
-    footer {
-      background-color: var(--yellow);
-      text-align: center;
-      padding: 20px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Charles Ezeike Portfolio</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
-    <nav id="nav">
-      <a href="#hero">Home</a>
-      <a href="#about">About Me</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<nav>
+  <a href="#about">About</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <div class="hero" id="hero">
-    <div class="typewriter">Welcome to Charles Ezeike's Portfolio. I am a 3D Artist.</div>
-    <p>Design. Animate. Inspire.</p>
+<header>
+  <h1 id="hero-text">I’m a 3D Artist</h1>
+  <p>Modeling | Texturing | Product Design</p>
+</header>
+
+<section id="about" class="about">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <img src="your-optimized-profile.jpg" alt="My Photo">
+    <p>
+      I’m a passionate 3D artist focused on creating high-quality models, textures, and product designs. With an eye for detail and a love for realism, I bring ideas to life through digital craftsmanship.
+    </p>
   </div>
+</section>
 
-  <section class="section-dark" id="about">
-    <div class="container reveal">
-      <h2>About Me</h2>
-      <p>I’m Charles Ezeike, a 3D designer passionate about crafting immersive visuals and interactive digital experiences. Explore my portfolio to see what I can bring to your project.</p>
-    </div>
-  </section>
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="portfolio-grid">
 
-  <section class="section-light" id="projects">
-    <div class="container reveal">
-      <h2>Projects</h2>
-      <div class="grid">
-        <!-- Cards with images -->
-        ${[...Array(9)].map((_, i) => `
-        <div class="card">
-          <img src="Render${i + 1}.png" alt="Render ${i + 1}">
-          <h3>Project ${i + 1}</h3>
-          <p>Description of project ${i + 1}.</p>
-          <a href="#" class="button">View More</a>
+    <!-- Project 1 -->
+    <div class="portfolio-item">
+      <div class="swiper project-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><a href="render1.html"><img src="render1_view1.png" alt="Render 1 View 1"></a></div>
+          <div class="swiper-slide"><a href="render1.html"><img src="render1_view2.png" alt="Render 1 View 2"></a></div>
+          <div class="swiper-slide"><a href="render1.html"><img src="render1_view3.png" alt="Render 1 View 3"></a></div>
         </div>
-        `).join('')}
       </div>
+      <div class="love-btn">Love</div>
     </div>
-  </section>
 
-  <section class="section-dark" id="contact">
-    <div class="container reveal">
-      <h2>Contact</h2>
-      <p>Let’s connect and bring your ideas to life.</p>
-      <a href="mailto:charlesezeike8@gmail.com" class="button-secondary">Email Me</a>
+    <!-- Project 2 -->
+    <div class="portfolio-item">
+      <div class="swiper project-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><a href="render2.html"><img src="render2_view1.png" alt="Render 2 View 1"></a></div>
+          <div class="swiper-slide"><a href="render2.html"><img src="render2_view2.png" alt="Render 2 View 2"></a></div>
+        </div>
+      </div>
+      <div class="love-btn">Love</div>
     </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2025 Charles Ezeike</p>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("nav");
-      nav.classList.toggle("open");
+<section id="skills" class="skills">
+  <h2>Skills</h2>
+  <div class="bar">
+    <h4>3D Modeling</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
+  </div>
+  <div class="bar">
+    <h4>Texturing</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
+  </div>
+  <div class="bar">
+    <h4>Product Design</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<footer>
+  © 2025 Your Name. All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+  // Hero animation
+  anime({
+    targets: '#hero-text',
+    translateY: [-50, 0],
+    opacity: [0, 1],
+    duration: 1500,
+    easing: 'easeOutExpo'
+  });
+
+  // Animate skill bars on scroll
+  const skillBars = document.querySelectorAll('.bar-fill');
+  const skillsSection = document.querySelector('#skills');
+  function animateSkills() {
+    const skillsTop = skillsSection.getBoundingClientRect().top;
+    const screenBottom = window.innerHeight;
+    if (skillsTop < screenBottom - 100) {
+      skillBars.forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width');
+      });
+      window.removeEventListener('scroll', animateSkills);
     }
+  }
+  window.addEventListener('scroll', animateSkills);
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll(".reveal");
-    window.addEventListener("scroll", () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      reveals.forEach(reveal => {
-        const top = reveal.getBoundingClientRect().top;
-        if (top < triggerBottom) {
-          reveal.classList.add("active");
-        } else {
-          reveal.classList.remove("active");
-        }
+  // Initialize Swiper sliders
+  document.querySelectorAll('.project-slider').forEach(el => {
+    new Swiper(el, {
+      loop: true,
+      autoplay: { delay: 2500, disableOnInteraction: false },
+      speed: 600,
+      effect: 'slide',
+    });
+  });
+
+  // Click animation for "Love" buttons
+  document.querySelectorAll('.love-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      anime({
+        targets: btn,
+        scale: [1, 1.4, 1],
+        duration: 600,
+        easing: 'easeInOutQuad'
       });
     });
-
-    // Trigger reveal on load
-    window.addEventListener("load", () => {
-      document.querySelectorAll(".reveal").forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
-          el.classList.add("active");
-        }
-      });
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
