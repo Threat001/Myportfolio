@@ -3,61 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charles Ezeike | 3D Portfolio</title>
+  <title>Charles Ezeike - 3D Portfolio</title>
   <style>
     :root {
       --yellow: #fdd835;
-      --light-yellow: #fff59d;
-      --dark-text: #333;
-      --light-bg: #fff;
-      --dark-bg: #121212;
-      --dark-card: #1e1e1e;
-      --light-card: #fff;
+      --light-yellow: #fffde7;
+      --lighter-yellow: #fff9c4;
+      --text-color: #000;
+      --bg-color: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: sans-serif;
       margin: 0;
-      color: var(--dark-text);
-      background-color: var(--light-bg);
-      transition: background-color 0.3s, color 0.3s;
+      color: var(--text-color);
+      background-color: var(--bg-color);
     }
 
-    body.dark {
-      background-color: var(--dark-bg);
-      color: #eee;
-    }
-
-    header, footer {
+    header {
       background-color: var(--yellow);
-      color: #000;
+      color: var(--text-color);
       padding: 20px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
-    .dark header, .dark footer {
-      background-color: #333;
-      color: #fff;
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 2px solid var(--text-color);
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    nav {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+      flex-direction: column;
+      width: 100%;
+      background-color: var(--yellow);
+    }
+
+    nav.open {
+      max-height: 300px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      nav {
+        max-height: none;
+        overflow: visible;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 0 15px;
+      }
     }
 
     .hero {
       background: linear-gradient(to right, var(--light-yellow), var(--yellow));
       text-align: center;
       padding: 80px 20px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .dark .hero {
-      background: linear-gradient(to right, #333, #555);
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
 
     .hero h1 {
-      font-size: 48px;
+      font-size: 36px;
       margin: 0;
     }
 
@@ -66,28 +99,41 @@
       margin-top: 10px;
     }
 
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid var(--text-color);
+      white-space: nowrap;
+      animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+      font-size: 28px;
+      display: inline-block;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--text-color); }
+    }
+
     section {
       padding: 40px 0;
-      margin-bottom: 20px;
-    }
-
-    .section-light-gray {
-      background-color: #fffde7;
-    }
-
-    .section-dark-gray {
-      background-color: #fff9c4;
-    }
-
-    .dark .section-light-gray,
-    .dark .section-dark-gray {
-      background-color: #1b1b1b;
     }
 
     .container {
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
+    }
+
+    .section-light {
+      background-color: var(--light-yellow);
+    }
+
+    .section-dark {
+      background-color: var(--lighter-yellow);
     }
 
     .grid {
@@ -97,36 +143,22 @@
     }
 
     .card {
-      background: var(--light-card);
+      background: #fff;
       padding: 20px;
       border-radius: 8px;
       border: 1px solid var(--yellow);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: background 0.3s;
+      transition: transform 0.3s ease;
     }
 
-    .dark .card {
-      background: var(--dark-card);
+    .card:hover {
+      transform: translateY(-5px);
     }
 
     .card img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 6px;
       margin-bottom: 10px;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.03);
-    }
-
-    h1, h2 {
-      margin-top: 0;
     }
 
     .button {
@@ -134,7 +166,6 @@
       color: #000;
       border: none;
       padding: 10px 20px;
-      margin-top: 10px;
       border-radius: 4px;
       cursor: pointer;
       text-decoration: none;
@@ -147,110 +178,68 @@
       border: 1px solid #fbc02d;
     }
 
-    #typewriter {
-      font-size: 24px;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid #000;
-      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+    footer {
+      background-color: var(--yellow);
+      text-align: center;
+      padding: 20px;
     }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      50% { border-color: transparent; }
-    }
-
-    /* Reveal on Scroll */
-    .reveal-on-scroll {
+    .reveal {
       opacity: 0;
       transform: translateY(30px);
-      transition: all 0.6s ease-out;
+      transition: all 0.6s ease;
     }
 
-    .reveal-on-scroll.active {
+    .reveal.active {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .toggle-dark {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      padding: 10px 15px;
-      background-color: #222;
-      color: #fff;
-      border-radius: 5px;
-      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="toggle-dark" onclick="toggleDarkMode()">Toggle Dark Mode</div>
 
   <header>
-    <h1>Charles Ezeike | 3D Portfolio</h1>
+    <h1>Charles Ezeike Portfolio</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
+    <nav id="nav">
+      <a href="#hero">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <div class="hero">
-    <h1 id="typewriter">Welcome to Charles Ezeike’s portfolio — I am a 3D Artist</h1>
+  <div class="hero" id="hero">
+    <div class="typewriter">Welcome to Charles Ezeike's Portfolio. I am a 3D Artist.</div>
     <p>Design. Animate. Inspire.</p>
   </div>
 
-  <section class="section-light-gray reveal-on-scroll">
-    <div class="container">
+  <section class="section-dark" id="about">
+    <div class="container reveal">
       <h2>About Me</h2>
-      <p>I’m a 3D designer passionate about crafting interactive visuals and digital experiences. Welcome to my world of creativity!</p>
+      <p>I’m Charles Ezeike, a 3D designer passionate about crafting immersive visuals and interactive digital experiences. Explore my portfolio to see what I can bring to your project.</p>
     </div>
   </section>
 
-  <section class="section-dark-gray reveal-on-scroll">
-    <div class="container">
+  <section class="section-light" id="projects">
+    <div class="container reveal">
       <h2>Projects</h2>
       <div class="grid">
-        <div class="card reveal-on-scroll">
-          <img src="images/Render1.png" alt="Render 1">
-          <h3>Modern Architecture</h3>
-          <p>3D render of a futuristic building concept.</p>
+        <!-- Cards with images -->
+        ${[...Array(9)].map((_, i) => `
+        <div class="card">
+          <img src="Render${i + 1}.png" alt="Render ${i + 1}">
+          <h3>Project ${i + 1}</h3>
+          <p>Description of project ${i + 1}.</p>
           <a href="#" class="button">View More</a>
         </div>
-        <div class="card reveal-on-scroll">
-          <img src="images/Render2.png" alt="Render 2">
-          <h3>Product Showcase</h3>
-          <p>High-detail visualization of a luxury wristwatch.</p>
-          <a href="#" class="button">View More</a>
-        </div>
-        <div class="card reveal-on-scroll">
-          <img src="images/Render3.png" alt="Render 3">
-          <h3>Interior Design</h3>
-          <p>Realistic 3D scene for an elegant workspace.</p>
-          <a href="#" class="button">View More</a>
-        </div>
+        `).join('')}
       </div>
     </div>
   </section>
 
-  <section class="section-light-gray reveal-on-scroll">
-    <div class="container">
-      <h2>Gallery</h2>
-      <div class="grid gallery">
-        <img src="images/Render4.png" alt="Render 4" />
-        <img src="images/Render5.png" alt="Render 5" />
-        <img src="images/Render6.png" alt="Render 6" />
-        <img src="images/Render7.png" alt="Render 7" />
-        <img src="images/Render8.png" alt="Render 8" />
-        <img src="images/Render9.png" alt="Render 9" />
-      </div>
-    </div>
-  </section>
-
-  <section class="section-dark-gray reveal-on-scroll">
-    <div class="container">
+  <section class="section-dark" id="contact">
+    <div class="container reveal">
       <h2>Contact</h2>
       <p>Let’s connect and bring your ideas to life.</p>
       <a href="mailto:charlesezeike8@gmail.com" class="button-secondary">Email Me</a>
@@ -262,23 +251,33 @@
   </footer>
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
+    function toggleMenu() {
+      const nav = document.getElementById("nav");
+      nav.classList.toggle("open");
     }
 
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    function handleScroll() {
-      revealElements.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (top < windowHeight - 50) {
-          el.classList.add('active');
+    // Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      reveals.forEach(reveal => {
+        const top = reveal.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          reveal.classList.add("active");
+        } else {
+          reveal.classList.remove("active");
         }
       });
-    }
+    });
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('load', handleScroll);
+    // Trigger reveal on load
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".reveal").forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
+          el.classList.add("active");
+        }
+      });
+    });
   </script>
 </body>
-  </html>
+</html>
