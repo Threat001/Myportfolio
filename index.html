@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Artist Portfolio</title>
+  <title>3D Artist Portfolio - Charles Ezeike</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <!-- Anime.js for animations -->
+  <!-- Anime.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
-    /* Basic Reset & Body Styles */
+    /* Reset and Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -17,13 +17,13 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #0f0f0f; /* Dark background */
-      color: #fff; /* White text */
-      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      background: #f0f8ff; /* Alice Blue - light background */
+      color: #001f3f; /* Navy - primary text color */
+      scroll-behavior: smooth; /* Smooth scrolling for nav links */
       line-height: 1.6;
     }
 
-    /* Header Styles */
+    /* Header Section */
     header {
       height: 100vh; /* Full viewport height */
       display: flex;
@@ -31,200 +31,339 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(120deg, #1e1e2f, #0f0f1f); /* Subtle gradient background */
-      padding: 0 20px; /* Padding for smaller screens */
+      background: linear-gradient(120deg, #aee1f9, #e0f7ff); /* Light blue gradient */
+      position: relative; /* Needed for potential future absolutely positioned elements */
     }
     header h1 {
-      font-size: 3rem; /* Large heading */
+      font-size: 3rem; /* Responsive size below */
       font-weight: 600;
       margin-bottom: 10px;
-      opacity: 0; /* Initially hidden for animation */
+      color: #003366; /* Darker Blue */
     }
     header p {
       font-size: 1.2rem;
-      font-weight: 300;
-      color: #aaa; /* Lighter text color */
+      color: #005577; /* Medium Blue */
     }
 
-    /* Navigation Styles */
+    /* Navigation */
     nav {
-      position: fixed; /* Stick to the top */
+      position: fixed;
       top: 0;
+      left: 0; /* Ensure it starts from the left edge */
       width: 100%;
-      background: #00000088; /* Semi-transparent black background */
+      background: rgba(255, 255, 255, 0.8); /* White with transparency */
       backdrop-filter: blur(10px); /* Frosted glass effect */
-      padding: 1rem;
+      padding: 1rem 0; /* Padding top/bottom */
       display: flex;
-      justify-content: center; /* Center links */
-      gap: 2rem; /* Space between links */
-      z-index: 999; /* Ensure nav is above other content */
-      border-bottom: 1px solid #222; /* Subtle bottom border */
+      justify-content: center;
+      gap: 2rem; /* Spacing between links */
+      z-index: 999; /* Stay on top */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     }
     nav a {
-      color: #fff;
+      color: #003366; /* Dark Blue */
       text-decoration: none;
-      font-weight: 300;
-      transition: color 0.3s ease; /* Smooth color transition on hover */
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
     nav a:hover {
-      color: #00ffff; /* Cyan color on hover */
+      color: #00aaff; /* Bright Blue on hover */
     }
 
-    /* Section Styles */
+    /* General Section Styling */
     section {
       padding: 80px 20px; /* Vertical and horizontal padding */
       max-width: 1000px; /* Limit content width */
-      margin: auto; /* Center sections */
+      margin: 0 auto; /* Center the content */
     }
     h2 {
       font-size: 2rem;
       font-weight: 600;
-      margin-bottom: 30px; /* Increased space below heading */
-      border-left: 4px solid #00ffff; /* Cyan accent border */
-      padding-left: 10px;
+      margin-bottom: 40px; /* Increased spacing below heading */
+      border-left: 4px solid #00aaff; /* Accent line */
+      padding-left: 15px; /* Spacing from accent line */
+      color: #003366; /* Dark Blue */
     }
 
     /* About Section */
-    .about p {
+    .about-content {
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+      gap: 30px; /* Spacing between image and text */
+      align-items: center;
+    }
+    .about-content img {
+      width: 200px; /* Fixed width for the image */
+      height: 200px; /* Fixed height for consistency */
+      object-fit: cover; /* Ensure image covers the area */
+      border-radius: 15px; /* Softer rounded corners */
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+      flex-shrink: 0; /* Prevent image from shrinking */
+    }
+    .about-content p {
+      flex: 1; /* Allow text to take remaining space */
+      min-width: 250px; /* Minimum width before wrapping */
       font-size: 1rem;
-      color: #ccc; /* Slightly brighter than header paragraph */
+      color: #003366; /* Dark Blue */
     }
 
     /* Portfolio Section */
     .portfolio-grid {
-      display: grid;
-      /* Responsive grid: columns adjust based on available width */
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      display: flex; /* Use flexbox for horizontal layout */
+      gap: 20px; /* Spacing between portfolio items */
+      overflow-x: auto; /* Enable horizontal scrolling if needed */
+      padding-bottom: 20px; /* Space for scrollbar */
+      /* Add scrollbar styling for better aesthetics (optional, webkit specific) */
+      scrollbar-width: thin;
+      scrollbar-color: #00aaff #e0f7ff;
     }
+    .portfolio-grid::-webkit-scrollbar {
+        height: 8px;
+    }
+    .portfolio-grid::-webkit-scrollbar-track {
+        background: #e0f7ff;
+        border-radius: 4px;
+    }
+    .portfolio-grid::-webkit-scrollbar-thumb {
+        background-color: #00aaff;
+        border-radius: 4px;
+    }
+
     .portfolio-item {
-      background: #1c1c1c; /* Darker item background */
-      padding: 10px;
+      background: #ffffff; /* White background for items */
+      padding: 15px; /* Padding inside the item */
       border-radius: 10px;
-      overflow: hidden; /* Ensure image corners are rounded */
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transform and shadow */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      position: relative; /* For absolute positioning of the button */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0; /* Prevent items from shrinking */
     }
     .portfolio-item:hover {
-      transform: scale(1.05); /* Slightly enlarge item on hover */
-       box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2); /* Cyan glow effect */
+      transform: translateY(-5px) scale(1.02); /* Slight lift and scale effect */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
     }
     .portfolio-item img {
-      width: 100%;
-      height: auto; /* Maintain aspect ratio */
-      display: block; /* Remove bottom space */
-      border-radius: 8px; /* Rounded corners for images */
+      display: block; /* Remove extra space below image */
+      width: 300px; /* Fixed width for consistency */
+      height: 200px; /* Fixed height */
+      object-fit: cover; /* Ensure image covers space */
+      border-radius: 8px;
+      cursor: pointer; /* Indicate clickable for lightbox */
+      transition: transform 0.3s ease;
+    }
+    /* Optional: slight image scale on item hover */
+    /* .portfolio-item:hover img {
+      transform: scale(1.03);
+    } */
+
+    /* Love Button */
+    .love-btn {
+      position: absolute;
+      bottom: 25px; /* Adjusted position */
+      right: 25px; /* Adjusted position */
+      background: rgba(255, 0, 119, 0.8); /* Pink with transparency */
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 1.2rem;
+      line-height: 35px; /* Vertically center heart */
+      text-align: center; /* Horizontally center heart */
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.3s ease; /* Added opacity transition */
+      opacity: 0; /* Initially hidden */
+      transform: scale(0.8); /* Start slightly smaller */
+    }
+    .portfolio-item:hover .love-btn {
+        opacity: 1; /* Show on hover */
+        transform: scale(1); /* Scale to normal size */
+    }
+    .love-btn:hover {
+        background: rgba(255, 0, 119, 1); /* Solid color on hover */
+        transform: scale(1.1); /* Slightly larger on hover */
+    }
+    .love-btn.clicked {
+      animation: pop 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Pop animation */
+    }
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.5); }
+      100% { transform: scale(1); }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 31, 63, 0.9); /* Darker overlay */
+      display: none; /* Hidden by default */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000; /* Above everything else */
+      cursor: pointer; /* Indicate clicking closes it */
+      animation: fadeIn 0.3s ease; /* Fade in effect */
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .lightbox img {
+      max-width: 90vw;  /* Max width relative to viewport width */
+      max-height: 90vh; /* Max height relative to viewport height */
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(0, 170, 255, 0.5); /* Glow effect */
+      object-fit: contain; /* Ensure whole image is visible */
+      cursor: default; /* Normal cursor on the image itself */
     }
 
     /* Skills Section */
     .skills .bar {
-      margin-bottom: 20px;
+      margin-bottom: 25px; /* Increased spacing */
     }
     .bar h4 {
-      margin-bottom: 5px;
-      font-weight: 300;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #003366;
     }
     .bar-bg {
-      background: #222; /* Background of the bar */
+      background: #d6eaf8; /* Lighter blue background */
       height: 10px;
       border-radius: 5px;
-      overflow: hidden; /* Clip the fill bar */
+      overflow: hidden; /* Contain the fill */
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow */
     }
     .bar-fill {
-      height: 100%; /* Fill the background height */
-      width: 0; /* Start with 0 width for animation */
-      background: #00ffff; /* Cyan fill color */
-      transition: width 1s ease-in-out; /* Animate width change */
+      height: 100%; /* Take full height of parent */
+      width: 0; /* Start at 0 width for animation */
+      background: linear-gradient(90deg, #0077ff, #00aaff); /* Blue gradient for fill */
       border-radius: 5px;
+      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother, longer transition */
     }
 
     /* Contact Section */
     .contact form {
       display: flex;
       flex-direction: column;
-      gap: 15px; /* Space between form elements */
+      gap: 15px; /* Spacing between form elements */
+      max-width: 600px; /* Limit form width */
+      margin: 0 auto; /* Center the form */
     }
-    input, textarea {
-      padding: 15px; /* More padding */
-      border: none;
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      background: #222; /* Dark input background */
-      color: #fff; /* White text */
       font-family: 'Poppins', sans-serif; /* Inherit font */
-      font-size: 1rem;
-      border: 1px solid #333; /* Subtle border */
-      transition: border-color 0.3s ease;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #00ffff; /* Cyan border on focus */
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+        border-color: #0077ff; /* Highlight border on focus */
+        box-shadow: 0 0 5px rgba(0, 119, 255, 0.3); /* Subtle glow on focus */
+        outline: none; /* Remove default outline */
     }
     textarea {
-        resize: vertical; /* Allow vertical resize only */
+      resize: vertical; /* Allow vertical resizing */
+      min-height: 120px; /* Minimum height */
     }
-    button {
-      padding: 15px;
-      background: #00ffff; /* Cyan button background */
+    button[type="submit"] {
+      padding: 12px 20px;
+      background: #0077ff;
       border: none;
       border-radius: 5px;
-      color: #000; /* Black text on button */
+      color: #ffffff;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s ease;
-      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
-    button:hover {
-      background: #00cccc; /* Darker cyan on hover */
+    button[type="submit"]:hover {
+      background: #0055cc; /* Darker blue on hover */
+      transform: translateY(-2px); /* Slight lift on hover */
     }
+     button[type="submit"]:active {
+        transform: translateY(0); /* Press down effect */
+     }
 
-    /* Footer Styles */
+    /* Footer */
     footer {
       text-align: center;
-      padding: 20px;
-      margin-top: 40px; /* Space above footer */
-      background: #111; /* Slightly different dark background */
-      color: #555; /* Dim text color */
+      padding: 25px 20px;
+      margin-top: 60px; /* Space above footer */
+      background: #003366; /* Dark Blue background */
+      color: #aee1f9; /* Light Blue text */
       font-size: 0.9rem;
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        nav {
-            gap: 1rem; /* Reduce gap on smaller screens */
-        }
         header h1 {
-            font-size: 2.5rem; /* Adjust heading size */
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.1rem;
+        }
+        nav {
+            gap: 1.5rem; /* Smaller gap for nav links */
+        }
+        section {
+            padding: 60px 15px;
         }
         h2 {
-            font-size: 1.8rem; /* Adjust section heading size */
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        .about-content {
+            flex-direction: column; /* Stack image and text */
+            text-align: center;
+        }
+        .about-content img {
+            margin-bottom: 20px; /* Add space below image when stacked */
+        }
+        .portfolio-item img {
+            width: 250px; /* Slightly smaller images */
+            height: 160px;
         }
     }
-
     @media (max-width: 600px) {
       header h1 {
-        font-size: 2rem; /* Further adjust heading size */
+        font-size: 2rem;
       }
-      header p {
-        font-size: 1rem;
-      }
-      nav {
-        padding: 0.8rem;
-        gap: 0.8rem; /* Further reduce gap */
-        justify-content: space-around; /* Space out links more */
-      }
-      nav a {
-          font-size: 0.9rem;
-      }
-      section {
-        padding: 60px 15px; /* Adjust padding */
-      }
+       header p {
+            font-size: 1rem;
+        }
+       nav {
+           padding: 0.8rem 0;
+           gap: 1rem; /* Even smaller gap */
+       }
+       nav a {
+           font-size: 0.9rem;
+       }
+       .portfolio-item img {
+            width: 220px;
+            height: 140px;
+        }
+       .love-btn {
+           width: 30px;
+           height: 30px;
+           font-size: 1rem;
+           line-height: 30px;
+           bottom: 20px;
+           right: 20px;
+       }
+       button[type="submit"] {
+           padding: 10px 15px;
+       }
     }
   </style>
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <nav>
   <a href="#about">About</a>
   <a href="#portfolio">Portfolio</a>
@@ -238,122 +377,194 @@
   <p>Modeling | Texturing | Product Design</p>
 </header>
 
-<main>
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About Me</h2>
-    <p>I’m a passionate and detail-oriented 3D artist specializing in creating high-quality models, realistic textures, and compelling product visualizations. With a strong foundation in 3D software and a keen eye for aesthetics, I strive to bring digital ideas to life with precision and creativity. Whether it's hard-surface modeling, organic sculpting, or rendering final shots, I love the challenge of crafting immersive visual experiences.</p>
-  </section>
+<!-- About Section -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <!-- Make sure 'charles-ezeike-profile.jpg' exists in the same folder -->
+    <img src="charles-ezeike-profile.jpg" alt="Photo of Charles Ezeike smiling">
+    <p>
+      Hello! I’m Charles Ezeike, a passionate and detail-oriented 3D artist specializing in creating high-quality models, realistic textures, and compelling product visualizations. With a strong foundation in design principles and a love for bringing ideas to life in three dimensions, I strive to deliver visually stunning and technically sound digital assets. I'm proficient in industry-standard software and always eager to learn new techniques to push creative boundaries.
+    </p>
+  </div>
+</section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <div class="portfolio-grid">
-      <!-- Replace placeholder images with your actual project images -->
-      <div class="portfolio-item"><img src="https://via.placeholder.com/400x300/1e1e2f/ffffff?text=Project+1" alt="Project 1 Visual"></div>
-      <div class="portfolio-item"><img src="https://via.placeholder.com/400x300/1e1e2f/ffffff?text=Project+2" alt="Project 2 Visual"></div>
-      <div class="portfolio-item"><img src="https://via.placeholder.com/400x300/1e1e2f/ffffff?text=Project+3" alt="Project 3 Visual"></div>
-      <div class="portfolio-item"><img src="https://via.placeholder.com/400x300/1e1e2f/ffffff?text=Project+4" alt="Project 4 Visual"></div>
-      <div class="portfolio-item"><img src="https://via.placeholder.com/400x300/1e1e2f/ffffff?text=Project+5" alt="Project 5 Visual"></div>
-      <div class="portfolio-item"><img src="https://via.placeholder.com/400x300/1e1e2f/ffffff?text=Project+6" alt="Project 6 Visual"></div>
-      </div>
-  </section>
+<!-- Portfolio Section -->
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="portfolio-grid">
+    <!-- Add more portfolio items here -->
+    <!-- Make sure 'render1.png', 'render2.png', etc. exist or replace them -->
+    <div class="portfolio-item">
+      <img src="render1.png" alt="Stylized 3D Prop Render" class="lightbox-trigger">
+      <button class="love-btn">♥</button>
+    </div>
+    <div class="portfolio-item">
+      <img src="render2.png" alt="Product Visualization Render" class="lightbox-trigger">
+      <button class="love-btn">♥</button>
+    </div>
+    <div class="portfolio-item">
+      <img src="render3.png" alt="Architectural Detail Render" class="lightbox-trigger">
+      <button class="love-btn">♥</button>
+    </div>
+     <div class="portfolio-item">
+      <img src="render4.png" alt="Character Concept Snippet" class="lightbox-trigger">
+      <button class="love-btn">♥</button>
+    </div>
+    <!-- Add more items as needed -->
+  </div>
+</section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills">
-    <h2>Skills</h2>
-    <!-- Add more skills as needed -->
-    <div class="bar">
-      <h4>3D Modeling (Blender/Maya)</h4>
-      <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
-    </div>
-    <div class="bar">
-      <h4>Texturing (Substance Painter)</h4>
-      <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
-    </div>
-    <div class="bar">
-      <h4>Rendering (Cycles/Arnold/Eevee)</h4>
-      <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
-    </div>
-     <div class="bar">
-      <h4>Product Visualization</h4>
-      <div class="bar-bg"><div class="bar-fill" data-width="88%"></div></div>
-    </div>
-    <div class="bar">
-      <h4>Adobe Creative Suite (Photoshop/Illustrator)</h4>
-      <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
-    </div>
-  </section>
+<!-- Skills Section -->
+<section id="skills" class="skills">
+  <h2>Skills</h2>
+  <div class="bar">
+    <h4>3D Modeling (Blender/Maya)</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
+  </div>
+  <div class="bar">
+    <h4>Texturing (Substance Painter/Photoshop)</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
+  </div>
+   <div class="bar">
+    <h4>Sculpting (ZBrush/Blender)</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
+  </div>
+  <div class="bar">
+    <h4>Rendering (Cycles/Arnold/Eevee)</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
+  </div>
+   <div class="bar">
+    <h4>Product Design Visualization</h4>
+    <div class="bar-bg"><div class="bar-fill" data-width="88%"></div></div>
+  </div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p style="color: #ccc; margin-bottom: 20px;">Interested in working together or have a question? Send me a message!</p>
-    <!-- Add your form action endpoint here -->
-    <form action="YOUR_FORM_ENDPOINT" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-</main>
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <h2>Get In Touch</h2>
+  <!-- Remember to replace YOUR_FORM_ID with your actual Formspree ID -->
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- Lightbox Container -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Enlarged Portfolio Item">
+</div>
 
 <!-- Footer -->
 <footer>
-  <!-- Update year and name -->
-  © 2024 Jane Doe. All rights reserved.
+  <!-- Updated Your Name and Year -->
+  © 2024 Charles Ezeike | 3D Artist. All rights reserved.
 </footer>
 
 <script>
-  // Hero text fade-in and slide-up animation
-  anime({
-    targets: '#hero-text',
-    translateY: [-30, 0], // Slide up slightly
-    opacity: [0, 1],     // Fade in
-    duration: 1200,      // Animation duration
-    delay: 300,          // Start after a short delay
-    easing: 'easeOutExpo' // Animation timing function
-  });
+  document.addEventListener('DOMContentLoaded', () => {
 
-  // Animate skill bars when they enter the viewport
-  const skillsSection = document.querySelector('#skills');
-  const skillBars = document.querySelectorAll('.bar-fill');
-  let skillsAnimated = false; // Flag to ensure animation runs only once
+    // --- Hero Text Animation ---
+    anime({
+      targets: '#hero-text',
+      translateY: [-30, 0], // Slide down effect
+      opacity: [0, 1],
+      duration: 1200,
+      delay: 300, // Slight delay
+      easing: 'easeOutExpo'
+    });
 
-  function checkSkillsAnimation() {
-    const sectionTop = skillsSection.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
+    // --- Skill Bar Animation on Scroll ---
+    const skillsSection = document.querySelector('#skills');
+    const skillBars = document.querySelectorAll('.bar-fill');
+    let skillsAnimated = false; // Flag to ensure animation runs only once
 
-    // Trigger animation when the top of the section is visible within the viewport
-    // Adjusted threshold: trigger when section is about 150px into view
-    if (!skillsAnimated && sectionTop < windowHeight - 150) {
-      skillBars.forEach(bar => {
-        // Set width based on the data-width attribute
-        bar.style.width = bar.getAttribute('data-width');
-      });
-      skillsAnimated = true; // Set flag to true
-      // Optional: remove listener after animation if performance is critical
-      // window.removeEventListener('scroll', checkSkillsAnimation);
+    function checkSkillsSection() {
+      if (!skillsAnimated) {
+        const rect = skillsSection.getBoundingClientRect();
+        // Animate if the top of the section is within the viewport (adjust offset as needed)
+        if (rect.top < window.innerHeight * 0.8 && rect.bottom >= 0) {
+          skillBars.forEach(bar => {
+            const targetWidth = bar.getAttribute('data-width');
+            anime({
+                targets: bar,
+                width: targetWidth,
+                duration: 1500,
+                easing: 'easeInOutExpo' // Smoother easing
+            });
+          });
+          skillsAnimated = true; // Set flag to true after animating
+          // Optional: remove listener if you ONLY want it to trigger once ever
+          // window.removeEventListener('scroll', checkSkillsSection);
+        }
+      }
     }
-  }
 
-  // Initial check in case the section is already in view on load
-  checkSkillsAnimation();
+    // Initial check in case the section is already visible on load
+    checkSkillsSection();
+    // Add scroll event listener
+    window.addEventListener('scroll', checkSkillsSection);
 
-  // Listen for scroll events to check if the skills section is in view
-  window.addEventListener('scroll', checkSkillsAnimation);
 
-  // Optional: Smooth scroll for nav links (handled by CSS scroll-behavior, but JS is an alternative)
-  // document.querySelectorAll('nav a').forEach(anchor => {
-  //   anchor.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     document.querySelector(this.getAttribute('href')).scrollIntoView({
-  //       behavior: 'smooth'
-  //     });
-  //   });
-  // });
+    // --- Love Button Animation ---
+    document.querySelectorAll('.love-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent lightbox from opening if button is clicked
 
+        // Simple toggle example (doesn't save state)
+        if (btn.classList.contains('loved')) {
+             btn.classList.remove('loved');
+             btn.innerHTML = '♥'; // Back to outline or default heart
+             // Add logic here if you want to decrease a counter, etc.
+        } else {
+            btn.classList.add('loved');
+            btn.innerHTML = '💖'; // Change heart style on love
+            // Trigger pop animation
+            btn.classList.add('clicked');
+            // Remove animation class after it finishes
+            setTimeout(() => btn.classList.remove('clicked'), 400); // Match animation duration
+            // Add logic here if you want to increase a counter, etc.
+        }
+      });
+    });
+
+
+    // --- Lightbox Functionality ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+
+    lightboxTriggers.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src; // Set the source of the lightbox image
+        lightboxImg.alt = img.alt; // Copy alt text
+        lightbox.style.display = 'flex'; // Show the lightbox
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+      });
+    });
+
+    // Close lightbox when clicking on the background overlay
+    lightbox.addEventListener('click', (e) => {
+      // Only close if the click is directly on the background (not the image)
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none'; // Hide the lightbox
+        document.body.style.overflow = ''; // Restore background scrolling
+        lightboxImg.src = ""; // Clear the src to prevent brief display of old image
+      }
+    });
+
+     // Optional: Close lightbox with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+             lightbox.style.display = 'none';
+             document.body.style.overflow = '';
+             lightboxImg.src = "";
+        }
+    });
+
+  }); // End DOMContentLoaded
 </script>
 
 </body>
