@@ -3,64 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charles Ezekiel - 3D Portfolio</title>
+  <title>Charles Ezeike | 3D Portfolio</title>
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #333333;
-      --primary: #fdd835;
-      --secondary: #fffde7;
-      --accent: #fbc02d;
-      --border: #fdd835;
-      --card-bg: #ffffff;
-    }
-
-    body.dark-mode {
-      --bg: #121212;
-      --text: #ffffff;
-      --primary: #333333;
-      --secondary: #1e1e1e;
-      --accent: #ffd600;
-      --border: #424242;
-      --card-bg: #1e1e1e;
+      --yellow: #fdd835;
+      --light-yellow: #fff59d;
+      --dark-text: #333;
+      --light-bg: #fff;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+      --light-card: #fff;
     }
 
     body {
       font-family: sans-serif;
       margin: 0;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--dark-bg);
+      color: #eee;
     }
 
     header, footer {
-      background-color: var(--primary);
-      color: var(--text);
+      background-color: var(--yellow);
+      color: #000;
       padding: 20px;
       text-align: center;
     }
 
-    .toggle-container {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-
-    .toggle-button {
-      background-color: var(--accent);
-      border: none;
-      color: var(--text);
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
+    .dark header, .dark footer {
+      background-color: #333;
+      color: #fff;
     }
 
     .hero {
-      background: linear-gradient(to right, var(--secondary), var(--primary));
+      background: linear-gradient(to right, var(--light-yellow), var(--yellow));
       text-align: center;
       padding: 80px 20px;
       animation: fadeIn 2s ease-in-out;
+    }
+
+    .dark .hero {
+      background: linear-gradient(to right, #333, #555);
     }
 
     @keyframes fadeIn {
@@ -76,20 +64,6 @@
     .hero p {
       font-size: 20px;
       margin-top: 10px;
-      border-right: 2px solid var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 4s steps(60, end) forwards, blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      50% { border-color: transparent }
     }
 
     section {
@@ -98,11 +72,16 @@
     }
 
     .section-light-gray {
-      background-color: var(--secondary);
+      background-color: #fffde7;
     }
 
     .section-dark-gray {
-      background-color: var(--primary);
+      background-color: #fff9c4;
+    }
+
+    .dark .section-light-gray,
+    .dark .section-dark-gray {
+      background-color: #1b1b1b;
     }
 
     .container {
@@ -118,12 +97,22 @@
     }
 
     .card {
-      background: var(--card-bg);
+      background: var(--light-card);
       padding: 20px;
       border-radius: 8px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--yellow);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s;
+    }
+
+    .dark .card {
+      background: var(--dark-card);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
 
     .gallery img {
@@ -141,8 +130,8 @@
     }
 
     .button {
-      background-color: var(--accent);
-      color: var(--text);
+      background-color: #fbc02d;
+      color: #000;
       border: none;
       padding: 10px 20px;
       margin-top: 10px;
@@ -154,83 +143,142 @@
 
     .button-secondary {
       background-color: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
+      color: #fbc02d;
+      border: 1px solid #fbc02d;
+    }
+
+    #typewriter {
+      font-size: 24px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #000;
+      animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      50% { border-color: transparent; }
+    }
+
+    /* Reveal on Scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .reveal-on-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      padding: 10px 15px;
+      background-color: #222;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="toggle-container">
-    <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  </div>
+  <div class="toggle-dark" onclick="toggleDarkMode()">Toggle Dark Mode</div>
 
   <header>
-    <h1>Charles Ezekiel - 3D Portfolio</h1>
+    <h1>Charles Ezeike | 3D Portfolio</h1>
   </header>
 
   <div class="hero">
-    <h1>Welcome to Charles Ezekiel's Portfolio</h1>
-    <p>I’m a 3D Artist passionate about crafting stunning visuals and immersive experiences.</p>
+    <h1 id="typewriter">Welcome to Charles Ezeike’s portfolio — I am a 3D Artist</h1>
+    <p>Design. Animate. Inspire.</p>
   </div>
 
-  <section class="section-light-gray">
+  <section class="section-light-gray reveal-on-scroll">
     <div class="container">
       <h2>About Me</h2>
-      <p>I’m a 3D designer passionate about crafting interactive visuals and digital experiences. Welcome to my portfolio!</p>
+      <p>I’m a 3D designer passionate about crafting interactive visuals and digital experiences. Welcome to my world of creativity!</p>
     </div>
   </section>
 
-  <section class="section-dark-gray">
+  <section class="section-dark-gray reveal-on-scroll">
     <div class="container">
       <h2>Projects</h2>
       <div class="grid">
-        <div class="card">
-          <h3>Project 1</h3>
-          <p>Short description of the first 3D project goes here.</p>
+        <div class="card reveal-on-scroll">
+          <img src="images/Render1.png" alt="Render 1">
+          <h3>Modern Architecture</h3>
+          <p>3D render of a futuristic building concept.</p>
           <a href="#" class="button">View More</a>
         </div>
-        <div class="card">
-          <h3>Project 2</h3>
-          <p>Details about the second design or animation.</p>
+        <div class="card reveal-on-scroll">
+          <img src="images/Render2.png" alt="Render 2">
+          <h3>Product Showcase</h3>
+          <p>High-detail visualization of a luxury wristwatch.</p>
           <a href="#" class="button">View More</a>
         </div>
-        <div class="card">
-          <h3>Project 3</h3>
-          <p>Overview of the third creative piece.</p>
+        <div class="card reveal-on-scroll">
+          <img src="images/Render3.png" alt="Render 3">
+          <h3>Interior Design</h3>
+          <p>Realistic 3D scene for an elegant workspace.</p>
           <a href="#" class="button">View More</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-light-gray">
+  <section class="section-light-gray reveal-on-scroll">
     <div class="container">
       <h2>Gallery</h2>
       <div class="grid gallery">
-        <img src="https://via.placeholder.com/400x300?text=Render+1" alt="3D Render 1" />
-        <img src="https://via.placeholder.com/400x300?text=Render+2" alt="3D Render 2" />
-        <img src="https://via.placeholder.com/400x300?text=Render+3" alt="3D Render 3" />
-        <img src="https://via.placeholder.com/400x300?text=Render+4" alt="3D Render 4" />
+        <img src="images/Render4.png" alt="Render 4" />
+        <img src="images/Render5.png" alt="Render 5" />
+        <img src="images/Render6.png" alt="Render 6" />
+        <img src="images/Render7.png" alt="Render 7" />
+        <img src="images/Render8.png" alt="Render 8" />
+        <img src="images/Render9.png" alt="Render 9" />
       </div>
     </div>
   </section>
 
-  <section class="section-dark-gray">
+  <section class="section-dark-gray reveal-on-scroll">
     <div class="container">
       <h2>Contact</h2>
       <p>Let’s connect and bring your ideas to life.</p>
-      <a href="mailto:you@example.com" class="button-secondary">Email Me</a>
+      <a href="mailto:charlesezeike8@gmail.com" class="button-secondary">Email Me</a>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Charles Ezekiel. All rights reserved.</p>
+    <p>&copy; 2025 Charles Ezeike</p>
   </footer>
 
   <script>
     function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+      document.body.classList.toggle('dark');
     }
+
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    function handleScroll() {
+      revealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 50) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
   </script>
 </body>
-</html>
+  </html>
