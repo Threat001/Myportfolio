@@ -4,174 +4,183 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3D Artist Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: linear-gradient(to right, #ffffff, #e0f0ff); color: #000; scroll-behavior: smooth; }
-
-    nav { position: fixed; top: 0; width: 100%; background: #00000088; backdrop-filter: blur(10px); padding: 1rem; display: flex; justify-content: center; gap: 2rem; z-index: 999; }
-    nav a { color: #fff; text-decoration: none; transition: color 0.3s; }
-    nav a:hover { color: #0077ff; }
-
-    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #d0eaff; text-align: center; }
-    header h1 { font-size: 3rem; margin-bottom: 10px; }
-    header p { font-size: 1.2rem; color: #222; }
-
-    section { padding: 80px 20px; max-width: 1000px; margin: auto; }
-    h2 { font-size: 2rem; margin-bottom: 20px; border-left: 4px solid #0077ff; padding-left: 10px; }
-
-    .about-content { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
-    .about-content img { width: 200px; border-radius: 15px; box-shadow: 0 4px 20px #000; flex-shrink: 0; }
-    .about-content p { flex: 1; min-width: 250px; font-size: 1rem; color: #333; }
-
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .portfolio-item { background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; transition: transform 0.3s; }
-    .portfolio-item:hover { transform: scale(1.02); }
-    .swiper-slide img { width: 100%; border-radius: 8px; }
-
-    .skills .bar { margin-bottom: 20px; }
-    .bar h4 { margin-bottom: 5px; }
-    .bar-bg { background: #ddd; height: 10px; border-radius: 5px; overflow: hidden; }
-    .bar-fill { height: 10px; width: 0; background: #0077ff; transition: width 1s ease-in-out; }
-
-    .contact form { display: flex; flex-direction: column; gap: 15px; }
-    input, textarea { padding: 10px; border: none; border-radius: 5px; background: #f0f0f0; color: #000; }
-    button { padding: 10px; background: #0077ff; border: none; border-radius: 5px; color: #fff; cursor: pointer; }
-
-    footer { text-align: center; padding: 20px; background: #111; color: #ccc; }
-
-    .love-btn {
-      display: inline-block;
-      margin-top: 8px;
-      background: #ff5c5c;
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .love-btn:hover { background: #e60000; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: #111;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #00ffff;
+      margin-left: 20px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: url('https://images.unsplash.com/photo-1609097372155-14e439c8b3e3?fit=crop&w=1350&q=80') center/cover;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .projects img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-item {
+      margin-bottom: 2rem;
+    }
+
+    .software {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .software div {
+      background: #222;
+      padding: 10px 20px;
+      border-radius: 20px;
+      color: #00ffff;
+      transition: transform 0.3s;
+    }
+    .software div:hover {
+      transform: scale(1.1);
+    }
+
+    .contact-icons a {
+      color: #00ffff;
+      margin-right: 15px;
+      font-size: 1.8rem;
+      transition: color 0.3s;
+    }
+    .contact-icons a:hover {
+      color: #fff;
+    }
+
+    @media(max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      nav a {
+        margin: 10px 0;
+      }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#skills">Skills</a>
-  <a href="#contact">Contact</a>
-</nav>
+  <header>
+    <div class="logo">My Portfolio</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#software">Software</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<header>
-  <h1 id="hero-text">I’m a 3D Artist</h1>
-  <p>Modeling | Texturing | Product Design</p>
-</header>
+  <section class="hero" id="hero">
+    <h1 id="intro">Welcome, I'm a 3D Artist</h1>
+    <p>I create models, textures, and product designs</p>
+  </section>
 
-<section id="about">
-  <h2>About Me</h2>
-  <div class="about-content">
-    <img src="your-optimized-profile.jpg" alt="Profile Photo">
-    <p>I’m a passionate 3D artist focused on creating high-quality models, textures, and product designs. With an eye for detail and a love for realism, I bring ideas to life through digital craftsmanship.</p>
-  </div>
-</section>
-
-<section id="portfolio">
-  <h2>Portfolio</h2>
-  <div class="portfolio-grid">
-
-    <!-- Example Project -->
-    <div class="portfolio-item">
-      <div class="swiper project-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><a href="render1.html"><img src="render1_view1.png" alt="View 1"></a></div>
-          <div class="swiper-slide"><a href="render1.html"><img src="render1_view2.png" alt="View 2"></a></div>
-        </div>
-      </div>
-      <div class="love-btn">Love</div>
+  <section id="projects" class="projects">
+    <h2>Past Projects</h2>
+    <div class="project-item">
+      <img src="https://via.placeholder.com/800x400?text=Project+1" alt="Project 1">
+      <p>Realistic product visualization for a watch brand</p>
     </div>
+    <div class="project-item">
+      <img src="https://via.placeholder.com/800x400?text=Project+2" alt="Project 2">
+      <p>Game-ready 3D character for Unity engine</p>
+    </div>
+  </section>
 
-  </div>
-</section>
+  <section id="software">
+    <h2>Software I Use</h2>
+    <div class="software">
+      <div>Blender</div>
+      <div>Substance Painter</div>
+      <div>Photoshop</div>
+      <div>ZBrush</div>
+      <div>Marvelous Designer</div>
+    </div>
+  </section>
 
-<section id="skills" class="skills">
-  <h2>Skills</h2>
-  <div class="bar">
-    <h4>3D Modeling</h4>
-    <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
-  </div>
-  <div class="bar">
-    <h4>Texturing</h4>
-    <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
-  </div>
-  <div class="bar">
-    <h4>Product Design</h4>
-    <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
-  </div>
-</section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a 3D artist passionate about bringing ideas to life through form, light, and texture. Whether it's realistic product renders or stylized models, I strive for visual clarity and storytelling in every piece.
+    </p>
+  </section>
 
-<section id="contact" class="contact">
-  <h2>Contact</h2>
-  <form>
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea rows="5" placeholder="Your Message"></textarea>
-    <button type="submit">Send</button>
-  </form>
-</section>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-icons">
+      <a href="mailto:example@email.com" target="_blank">✉</a>
+      <a href="https://facebook.com/" target="_blank">F</a>
+      <a href="https://instagram.com/" target="_blank">I</a>
+      <a href="https://tiktok.com/" target="_blank">T</a>
+      <a href="https://artstation.com/" target="_blank">A</a>
+    </div>
+  </section>
 
-<footer>
-  © 2025 Your Name. All rights reserved.
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script>
-  anime({
-    targets: '#hero-text',
-    translateY: [-50, 0],
-    opacity: [0, 1],
-    duration: 1500,
-    easing: 'easeOutExpo'
-  });
-
-  const skillBars = document.querySelectorAll('.bar-fill');
-  const skillsSection = document.querySelector('#skills');
-  function animateSkills() {
-    const top = skillsSection.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
-      skillBars.forEach(bar => {
-        bar.style.width = bar.dataset.width;
-      });
-      window.removeEventListener('scroll', animateSkills);
-    }
-  }
-  window.addEventListener('scroll', animateSkills);
-
-  document.querySelectorAll('.project-slider').forEach(slider => {
-    new Swiper(slider, {
-      loop: true,
-      autoplay: { delay: 2500, disableOnInteraction: false },
-      speed: 600,
-      effect: 'slide',
+  <script>
+    anime({
+      targets: '#intro',
+      opacity: [0, 1],
+      translateY: [-50, 0],
+      duration: 2000,
+      easing: 'easeOutExpo'
     });
-  });
-
-  document.querySelectorAll('.love-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      anime({
-        targets: btn,
-        scale: [1, 1.4, 1],
-        duration: 600,
-        easing: 'easeInOutQuad'
-      });
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
