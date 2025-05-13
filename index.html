@@ -4,22 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3D Artist Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      font-family: 'Orbitron', sans-serif;
-      background: #0d0d0d;
-      color: #f0f0f0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #002244;
       scroll-behavior: smooth;
     }
     header {
-      background: #111;
+      background: #002244;
       padding: 1rem 2rem;
       position: fixed;
       width: 100%;
@@ -29,95 +25,136 @@
       justify-content: space-between;
       align-items: center;
     }
+    .logo {color: white; font-weight: 700;}
     nav a {
-      color: #00ffff;
+      color: white;
       margin-left: 20px;
       text-decoration: none;
-      transition: color 0.3s;
+      font-weight: 500;
     }
-    nav a:hover {
-      color: #fff;
-    }
-
+    nav a:hover {color: #66ccff;}
     section {
-      padding: 80px 20px;
+      padding: 100px 20px 60px;
       max-width: 1000px;
       margin: 0 auto;
     }
-
     .hero {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       background: url('https://images.unsplash.com/photo-1609097372155-14e439c8b3e3?fit=crop&w=1350&q=80') center/cover;
       text-align: center;
+      color: white;
     }
-    .hero h1 {
-      font-size: 3rem;
-      color: #00ffff;
-      margin-bottom: 1rem;
+    .hero h1 {font-size: 3rem; margin-bottom: 1rem;}
+    .hero p {font-size: 1.2rem;}
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #002244;
+      text-align: center;
     }
-    .hero p {
-      font-size: 1.2rem;
-      color: #fff;
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-
-    .projects img {
+    .project-item img {
       width: 100%;
       border-radius: 8px;
-      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
     }
-
-    .project-item {
-      margin-bottom: 2rem;
-    }
-
+    .project-item img:hover {transform: scale(1.03);}
     .software {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      justify-content: center;
     }
     .software div {
-      background: #222;
+      background: #002244;
+      color: white;
       padding: 10px 20px;
       border-radius: 20px;
-      color: #00ffff;
-      transition: transform 0.3s;
+      font-weight: 500;
     }
-    .software div:hover {
-      transform: scale(1.1);
+    #about p {
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
-
+    .contact-icons {
+      text-align: center;
+      margin-top: 20px;
+    }
     .contact-icons a {
-      color: #00ffff;
-      margin-right: 15px;
+      color: #002244;
+      margin: 0 10px;
       font-size: 1.8rem;
       transition: color 0.3s;
     }
-    .contact-icons a:hover {
-      color: #fff;
+    .contact-icons a:hover {color: #66ccff;}
+
+    /* Lightbox Styling */
+    #lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease;
+      z-index: 2000;
     }
+    #lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 70%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    }
+    #lightbox .caption {
+      color: white;
+      font-size: 1.1rem;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      font-size: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.3);
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 2100;
+      transform: translateY(-50%);
+    }
+    .nav-btn:hover {background: rgba(255,255,255,0.2);}
+    #prevBtn {left: 20px;}
+    #nextBtn {right: 20px;}
 
     @media(max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      nav a {
-        margin: 10px 0;
-      }
+      header {flex-direction: column; align-items: flex-start;}
+      .hero h1 {font-size: 2rem;}
+      nav a {margin: 10px 0;}
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">My Portfolio</div>
+    <div class="logo">3D Artist Portfolio</div>
     <nav>
       <a href="#hero">Home</a>
       <a href="#projects">Projects</a>
@@ -132,15 +169,19 @@
     <p>I create models, textures, and product designs</p>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="projects">
     <h2>Past Projects</h2>
-    <div class="project-item">
-      <img src="https://via.placeholder.com/800x400?text=Project+1" alt="Project 1">
-      <p>Realistic product visualization for a watch brand</p>
-    </div>
-    <div class="project-item">
-      <img src="https://via.placeholder.com/800x400?text=Project+2" alt="Project 2">
-      <p>Game-ready 3D character for Unity engine</p>
+    <div class="project-gallery" id="gallery">
+      <!-- Images with captions -->
+      <div class="project-item"><img src="Render1.png" alt="Render 1"></div>
+      <div class="project-item"><img src="Render2.png" alt="Render 2"></div>
+      <div class="project-item"><img src="Render3.png" alt="Render 3"></div>
+      <div class="project-item"><img src="Render4.png" alt="Render 4"></div>
+      <div class="project-item"><img src="Render5.png" alt="Render 5"></div>
+      <div class="project-item"><img src="Render6.png" alt="Render 6"></div>
+      <div class="project-item"><img src="Render7.png" alt="Render 7"></div>
+      <div class="project-item"><img src="Render8.png" alt="Render 8"></div>
+      <div class="project-item"><img src="Render9.png" alt="Render 9"></div>
     </div>
   </section>
 
@@ -158,20 +199,28 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I'm a 3D artist passionate about bringing ideas to life through form, light, and texture. Whether it's realistic product renders or stylized models, I strive for visual clarity and storytelling in every piece.
+      I'm a passionate 3D artist focused on creating detailed models and textures for products, characters, and environments. I love blending creative storytelling with clean, professional execution.
     </p>
   </section>
 
   <section id="contact">
     <h2>Contact Me</h2>
     <div class="contact-icons">
-      <a href="mailto:example@email.com" target="_blank">✉</a>
-      <a href="https://facebook.com/" target="_blank">F</a>
-      <a href="https://instagram.com/" target="_blank">I</a>
-      <a href="https://tiktok.com/" target="_blank">T</a>
-      <a href="https://artstation.com/" target="_blank">A</a>
+      <a href="mailto:youremail@example.com" title="Email">✉</a>
+      <a href="https://facebook.com/" target="_blank" title="Facebook">F</a>
+      <a href="https://instagram.com/" target="_blank" title="Instagram">I</a>
+      <a href="https://tiktok.com/" target="_blank" title="TikTok">T</a>
+      <a href="https://artstation.com/" target="_blank" title="ArtStation">A</a>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button class="nav-btn" id="prevBtn">&#10094;</button>
+    <img src="" alt="">
+    <div class="caption"></div>
+    <button class="nav-btn" id="nextBtn">&#10095;</button>
+  </div>
 
   <script>
     anime({
@@ -180,6 +229,50 @@
       translateY: [-50, 0],
       duration: 2000,
       easing: 'easeOutExpo'
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const caption = lightbox.querySelector('.caption');
+    const images = Array.from(document.querySelectorAll('.project-item img'));
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      const img = images[index];
+      lightboxImg.src = img.src;
+      caption.textContent = img.alt;
+      lightbox.classList.add('active');
+      currentIndex = index;
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showLightbox(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showLightbox(currentIndex);
+    }
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => showLightbox(index));
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', nextImage);
+    document.getElementById('prevBtn').addEventListener('click', prevImage);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === caption) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
     });
   </script>
 </body>
