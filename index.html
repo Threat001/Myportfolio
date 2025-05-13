@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3D Artist Portfolio - Charles Ezeike</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <!-- Anime.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
@@ -17,347 +17,399 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f0f8ff; /* Alice Blue - light background */
-      color: #001f3f; /* Navy - primary text color */
-      scroll-behavior: smooth; /* Smooth scrolling for nav links */
-      line-height: 1.6;
+      background: #f8f9fa; /* Slightly off-white background */
+      color: #212529; /* Darker primary text color */
+      scroll-behavior: smooth;
+      line-height: 1.7; /* Slightly increased line height */
+      font-weight: 400; /* Default font weight */
+    }
+
+    /* --- Refined Colors --- */
+    :root {
+      --primary-blue: #0d2c4f; /* Darker, richer blue */
+      --accent-blue: #007bff; /* Standard professional blue */
+      --light-blue-bg: #e9f3ff; /* Softer light blue */
+      --text-muted: #6c757d; /* Muted text color */
+      --white: #ffffff;
+      --light-gray: #f1f3f5;
+      --border-color: #dee2e6;
     }
 
     /* Header Section */
     header {
-      height: 100vh; /* Full viewport height */
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: linear-gradient(120deg, #aee1f9, #e0f7ff); /* Light blue gradient */
-      position: relative; /* Needed for potential future absolutely positioned elements */
+      background: linear-gradient(135deg, var(--light-blue-bg) 0%, #ffffff 100%);
+      position: relative;
     }
     header h1 {
-      font-size: 3rem; /* Responsive size below */
+      font-size: 3.2rem;
       font-weight: 600;
-      margin-bottom: 10px;
-      color: #003366; /* Darker Blue */
+      margin-bottom: 15px;
+      color: var(--primary-blue);
     }
     header p {
-      font-size: 1.2rem;
-      color: #005577; /* Medium Blue */
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Navigation */
     nav {
       position: fixed;
       top: 0;
-      left: 0; /* Ensure it starts from the left edge */
+      left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.8); /* White with transparency */
-      backdrop-filter: blur(10px); /* Frosted glass effect */
-      padding: 1rem 0; /* Padding top/bottom */
+      background: var(--white);
+      padding: 1rem 0;
       display: flex;
       justify-content: center;
-      gap: 2rem; /* Spacing between links */
-      z-index: 999; /* Stay on top */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      gap: 2.5rem;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid var(--border-color);
     }
     nav a {
-      color: #003366; /* Dark Blue */
+      color: var(--primary-blue);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease;
+      transition: color 0.25s ease;
+      position: relative;
+      padding-bottom: 5px;
     }
     nav a:hover {
-      color: #00aaff; /* Bright Blue on hover */
+      color: var(--accent-blue);
     }
 
     /* General Section Styling */
     section {
-      padding: 80px 20px; /* Vertical and horizontal padding */
-      max-width: 1000px; /* Limit content width */
-      margin: 0 auto; /* Center the content */
+      padding: 90px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 600;
-      margin-bottom: 40px; /* Increased spacing below heading */
-      border-left: 4px solid #00aaff; /* Accent line */
-      padding-left: 15px; /* Spacing from accent line */
-      color: #003366; /* Dark Blue */
+      margin-bottom: 50px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--accent-blue);
+      display: inline-block;
+      color: var(--primary-blue);
+    }
+    section > h2 {
+        display: block;
+        text-align: center;
+        border-bottom: none;
+        margin-bottom: 60px;
     }
 
     /* About Section */
     .about-content {
       display: flex;
-      flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-      gap: 30px; /* Spacing between image and text */
+      flex-wrap: wrap;
+      gap: 40px;
       align-items: center;
     }
     .about-content img {
-      width: 200px; /* Fixed width for the image */
-      height: 200px; /* Fixed height for consistency */
-      object-fit: cover; /* Ensure image covers the area */
-      border-radius: 15px; /* Softer rounded corners */
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-      flex-shrink: 0; /* Prevent image from shrinking */
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 8px 30px rgba(0, 85, 153, 0.15);
+      flex-shrink: 0;
+      border: 4px solid var(--white);
     }
     .about-content p {
-      flex: 1; /* Allow text to take remaining space */
-      min-width: 250px; /* Minimum width before wrapping */
-      font-size: 1rem;
-      color: #003366; /* Dark Blue */
+      flex: 1;
+      min-width: 300px;
+      font-size: 1.05rem;
+      color: #343a40;
+      line-height: 1.8;
     }
 
     /* Portfolio Section */
     .portfolio-grid {
-      display: flex; /* Use flexbox for horizontal layout */
-      gap: 20px; /* Spacing between portfolio items */
-      overflow-x: auto; /* Enable horizontal scrolling if needed */
-      padding-bottom: 20px; /* Space for scrollbar */
-      /* Add scrollbar styling for better aesthetics (optional, webkit specific) */
-      scrollbar-width: thin;
-      scrollbar-color: #00aaff #e0f7ff;
-    }
-    .portfolio-grid::-webkit-scrollbar {
-        height: 8px;
-    }
-    .portfolio-grid::-webkit-scrollbar-track {
-        background: #e0f7ff;
-        border-radius: 4px;
-    }
-    .portfolio-grid::-webkit-scrollbar-thumb {
-        background-color: #00aaff;
-        border-radius: 4px;
+      display: grid;
+      /* Adjusted minmax for potentially narrower vertical items */
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
     }
 
     .portfolio-item {
-      background: #ffffff; /* White background for items */
-      padding: 15px; /* Padding inside the item */
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-      position: relative; /* For absolute positioning of the button */
+      background: var(--white);
+      border-radius: 8px; /* Rounded corners for the whole item */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+      position: relative;
+      overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      flex-shrink: 0; /* Prevent items from shrinking */
     }
     .portfolio-item:hover {
-      transform: translateY(-5px) scale(1.02); /* Slight lift and scale effect */
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
     .portfolio-item img {
-      display: block; /* Remove extra space below image */
-      width: 300px; /* Fixed width for consistency */
-      height: 200px; /* Fixed height */
-      object-fit: cover; /* Ensure image covers space */
-      border-radius: 8px;
-      cursor: pointer; /* Indicate clickable for lightbox */
-      transition: transform 0.3s ease;
+      display: block;
+      width: 100%; /* Image takes full width of grid item */
+      /* Removed fixed height */
+      aspect-ratio: 3 / 4; /* <<< SET VERTICAL ASPECT RATIO HERE (width / height) */
+      object-fit: cover; /* Cover the area, cropping if needed */
+      /* border-radius: 8px 8px 0 0; */ /* Removed top-only radius */
+      border-radius: 8px; /* Apply border-radius to image itself if no info block */
+      cursor: pointer;
+      transition: transform 0.35s ease;
     }
-    /* Optional: slight image scale on item hover */
-    /* .portfolio-item:hover img {
-      transform: scale(1.03);
+     .portfolio-item:hover img {
+       transform: scale(1.05);
+     }
+
+    /* Optional: Info block styling (if you uncomment it in HTML) */
+    /* .portfolio-item .item-info {
+        padding: 15px;
+        text-align: center;
+    }
+    .portfolio-item .item-info h4 {
+        margin-bottom: 5px;
+        color: var(--primary-blue);
+        font-weight: 600;
+    }
+    .portfolio-item .item-info p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
     } */
+    /* If using item-info, move border-radius from img to portfolio-item
+       and add border-radius: 8px 8px 0 0; back to the img rule */
+
 
     /* Love Button */
     .love-btn {
       position: absolute;
-      bottom: 25px; /* Adjusted position */
-      right: 25px; /* Adjusted position */
-      background: rgba(255, 0, 119, 0.8); /* Pink with transparency */
-      color: white;
-      border: none;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--primary-blue);
+      border: 1px solid var(--border-color);
       border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      font-size: 1.2rem;
-      line-height: 35px; /* Vertically center heart */
-      text-align: center; /* Horizontally center heart */
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+      line-height: 36px;
+      text-align: center;
       cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.3s ease; /* Added opacity transition */
-      opacity: 0; /* Initially hidden */
-      transform: scale(0.8); /* Start slightly smaller */
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, opacity 0.3s ease;
+      opacity: 0;
+      transform: scale(0.8);
+      z-index: 2; /* Ensure button is above image */
     }
     .portfolio-item:hover .love-btn {
-        opacity: 1; /* Show on hover */
-        transform: scale(1); /* Scale to normal size */
+        opacity: 1;
+        transform: scale(1);
     }
     .love-btn:hover {
-        background: rgba(255, 0, 119, 1); /* Solid color on hover */
-        transform: scale(1.1); /* Slightly larger on hover */
+        background: var(--accent-blue);
+        color: var(--white);
+        border-color: var(--accent-blue);
+        transform: scale(1.1);
     }
-    .love-btn.clicked {
-      animation: pop 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Pop animation */
-    }
-    @keyframes pop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.5); }
-      100% { transform: scale(1); }
+    .love-btn.loved {
+         background: #e44d80;
+         color: var(--white);
+         border-color: #e44d80;
     }
 
     /* Lightbox */
     .lightbox {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 31, 63, 0.9); /* Darker overlay */
-      display: none; /* Hidden by default */
+      background: rgba(13, 44, 79, 0.95);
+      display: none;
       justify-content: center;
       align-items: center;
-      z-index: 1000; /* Above everything else */
-      cursor: pointer; /* Indicate clicking closes it */
-      animation: fadeIn 0.3s ease; /* Fade in effect */
+      z-index: 1001;
+      cursor: pointer;
+      animation: fadeIn 0.3s ease;
     }
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
     }
     .lightbox img {
-      max-width: 90vw;  /* Max width relative to viewport width */
-      max-height: 90vh; /* Max height relative to viewport height */
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.5); /* Glow effect */
-      object-fit: contain; /* Ensure whole image is visible */
-      cursor: default; /* Normal cursor on the image itself */
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 5px;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.4);
+      object-fit: contain;
+      cursor: default;
     }
 
     /* Skills Section */
     .skills .bar {
-      margin-bottom: 25px; /* Increased spacing */
+      margin-bottom: 30px;
     }
-    .bar h4 {
-      margin-bottom: 8px;
+    .bar .info {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       margin-bottom: 8px;
+    }
+    .bar .info h4 {
       font-weight: 600;
-      color: #003366;
+      color: var(--primary-blue);
+      font-size: 1rem;
+      margin: 0;
     }
+     .bar .info span {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+     }
     .bar-bg {
-      background: #d6eaf8; /* Lighter blue background */
-      height: 10px;
-      border-radius: 5px;
-      overflow: hidden; /* Contain the fill */
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow */
+      background: var(--light-gray);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
     }
     .bar-fill {
-      height: 100%; /* Take full height of parent */
-      width: 0; /* Start at 0 width for animation */
-      background: linear-gradient(90deg, #0077ff, #00aaff); /* Blue gradient for fill */
-      border-radius: 5px;
-      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Smoother, longer transition */
+      height: 100%;
+      width: 0;
+      background: var(--accent-blue);
+      border-radius: 4px;
+      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     /* Contact Section */
     .contact form {
       display: flex;
       flex-direction: column;
-      gap: 15px; /* Spacing between form elements */
-      max-width: 600px; /* Limit form width */
-      margin: 0 auto; /* Center the form */
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
     }
     input[type="text"],
     input[type="email"],
     textarea {
-      padding: 12px 15px;
-      border: 1px solid #ccc;
+      padding: 15px 18px;
+      border: 1px solid var(--border-color);
       border-radius: 5px;
-      font-family: 'Poppins', sans-serif; /* Inherit font */
-      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--white);
+      color: #495057;
     }
     input[type="text"]:focus,
     input[type="email"]:focus,
     textarea:focus {
-        border-color: #0077ff; /* Highlight border on focus */
-        box-shadow: 0 0 5px rgba(0, 119, 255, 0.3); /* Subtle glow on focus */
-        outline: none; /* Remove default outline */
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+        outline: none;
     }
     textarea {
-      resize: vertical; /* Allow vertical resizing */
-      min-height: 120px; /* Minimum height */
+      resize: vertical;
+      min-height: 150px;
     }
     button[type="submit"] {
-      padding: 12px 20px;
-      background: #0077ff;
+      padding: 15px 25px;
+      background: var(--accent-blue);
       border: none;
       border-radius: 5px;
-      color: #ffffff;
+      color: var(--white);
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
     }
     button[type="submit"]:hover {
-      background: #0055cc; /* Darker blue on hover */
-      transform: translateY(-2px); /* Slight lift on hover */
+      background: #0056b3;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
     }
      button[type="submit"]:active {
-        transform: translateY(0); /* Press down effect */
+        transform: translateY(0);
+        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
      }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 25px 20px;
-      margin-top: 60px; /* Space above footer */
-      background: #003366; /* Dark Blue background */
-      color: #aee1f9; /* Light Blue text */
+      padding: 30px 20px;
+      margin-top: 80px;
+      background: var(--primary-blue);
+      color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
     }
+    footer a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+    }
+     footer a:hover {
+        text-decoration: underline;
+     }
+
 
     /* Responsive Design */
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 2.5rem;
-        }
-        header p {
-            font-size: 1.1rem;
-        }
-        nav {
-            gap: 1.5rem; /* Smaller gap for nav links */
-        }
+    @media (max-width: 992px) {
         section {
-            padding: 60px 15px;
+            max-width: 90%;
         }
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-        }
-        .about-content {
-            flex-direction: column; /* Stack image and text */
-            text-align: center;
-        }
-        .about-content img {
-            margin-bottom: 20px; /* Add space below image when stacked */
-        }
-        .portfolio-item img {
-            width: 250px; /* Slightly smaller images */
-            height: 160px;
+        .portfolio-grid {
+            /* Adjust minmax if needed for vertical */
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
         }
     }
+
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.6rem; }
+        header p { font-size: 1.1rem; }
+        nav { gap: 1.8rem; }
+        section { padding: 70px 15px; }
+        h2 { font-size: 1.9rem; margin-bottom: 40px; }
+        section > h2 { margin-bottom: 50px; }
+
+        .about-content { flex-direction: column; text-align: center; }
+        .about-content img { margin-bottom: 30px; width: 180px; height: 180px; }
+
+        .portfolio-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+    }
+
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-       header p {
-            font-size: 1rem;
-        }
-       nav {
-           padding: 0.8rem 0;
-           gap: 1rem; /* Even smaller gap */
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1rem; }
+      nav { padding: 0.8rem 0; gap: 1.2rem; }
+      nav a { font-size: 0.9rem; }
+      h2 { font-size: 1.7rem; }
+      section > h2 { margin-bottom: 40px; }
+
+       /* Keep 2 columns longer for vertical images if possible */
+       .portfolio-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
        }
-       nav a {
-           font-size: 0.9rem;
+        /* Single column on very narrow screens if needed */
+       @media (max-width: 450px) {
+           .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+           }
        }
-       .portfolio-item img {
-            width: 220px;
-            height: 140px;
-        }
+
+
        .love-btn {
-           width: 30px;
-           height: 30px;
-           font-size: 1rem;
-           line-height: 30px;
-           bottom: 20px;
-           right: 20px;
+           width: 32px; height: 32px; font-size: 1rem; line-height: 32px;
+           top: 10px; right: 10px;
        }
-       button[type="submit"] {
-           padding: 10px 15px;
-       }
+       button[type="submit"] { padding: 12px 20px; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -365,6 +417,7 @@
 
 <!-- Navigation -->
 <nav>
+  <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#portfolio">Portfolio</a>
   <a href="#skills">Skills</a>
@@ -372,70 +425,103 @@
 </nav>
 
 <!-- Header/Hero Section -->
-<header>
-  <h1 id="hero-text">I’m a 3D Artist</h1>
-  <p>Modeling | Texturing | Product Design</p>
+<header id="home">
+  <h1 id="hero-text">Charles Ezeike</h1>
+  <p>3D Artist specializing in Modeling, Texturing & Product Visualization</p>
 </header>
 
 <!-- About Section -->
 <section id="about">
   <h2>About Me</h2>
   <div class="about-content">
-    <!-- Make sure 'charles-ezeike-profile.jpg' exists in the same folder -->
-    <img src="charles-ezeike-profile.jpg" alt="Photo of Charles Ezeike smiling">
+    <img src="charles-ezeike-profile.jpg" alt="Professional headshot of Charles Ezeike">
     <p>
-      Hello! I’m Charles Ezeike, a passionate and detail-oriented 3D artist specializing in creating high-quality models, realistic textures, and compelling product visualizations. With a strong foundation in design principles and a love for bringing ideas to life in three dimensions, I strive to deliver visually stunning and technically sound digital assets. I'm proficient in industry-standard software and always eager to learn new techniques to push creative boundaries.
+      Hello! I’m Charles Ezeike, a dedicated and detail-oriented 3D artist based in [Your Location - Optional]. I specialize in creating high-quality 3D models, photorealistic textures, and compelling product visualizations that bring concepts to life. With a strong foundation in design principles and proficiency in industry-standard software, I am committed to delivering visually stunning and technically robust digital assets. I thrive on new challenges and continuously seek opportunities to learn and push the boundaries of digital creation.
     </p>
   </div>
 </section>
 
 <!-- Portfolio Section -->
 <section id="portfolio">
-  <h2>Portfolio</h2>
+  <h2>My Work</h2>
   <div class="portfolio-grid">
-    <!-- Add more portfolio items here -->
-    <!-- Make sure 'render1.png', 'render2.png', etc. exist or replace them -->
+    <!-- Items will now display images vertically -->
     <div class="portfolio-item">
-      <img src="render1.png" alt="Stylized 3D Prop Render" class="lightbox-trigger">
-      <button class="love-btn">♥</button>
+      <img src="Render1.png" alt="Project Title 1" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
     </div>
     <div class="portfolio-item">
-      <img src="render2.png" alt="Product Visualization Render" class="lightbox-trigger">
-      <button class="love-btn">♥</button>
+      <img src="Render2.png" alt="Project Title 2" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
     </div>
     <div class="portfolio-item">
-      <img src="render3.png" alt="Architectural Detail Render" class="lightbox-trigger">
-      <button class="love-btn">♥</button>
+      <img src="Render3.png" alt="Project Title 3" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
     </div>
      <div class="portfolio-item">
-      <img src="render4.png" alt="Character Concept Snippet" class="lightbox-trigger">
-      <button class="love-btn">♥</button>
+      <img src="Render4.png" alt="Project Title 4" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
     </div>
-    <!-- Add more items as needed -->
+     <div class="portfolio-item">
+      <img src="Render5.png" alt="Project Title 5" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
+    </div>
+     <div class="portfolio-item">
+      <img src="Render6.png" alt="Project Title 6" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
+    </div>
+     <div class="portfolio-item">
+      <img src="Render7.png" alt="Project Title 7" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
+    </div>
+     <div class="portfolio-item">
+      <img src="Render8.png" alt="Project Title 8" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
+    </div>
+     <div class="portfolio-item">
+      <img src="Render9.png" alt="Project Title 9" class="lightbox-trigger">
+      <button class="love-btn" title="Add to favorites">♥</button>
+    </div>
+    <!-- End of portfolio items -->
   </div>
 </section>
 
 <!-- Skills Section -->
 <section id="skills" class="skills">
-  <h2>Skills</h2>
+  <h2>Technical Skills</h2>
   <div class="bar">
-    <h4>3D Modeling (Blender/Maya)</h4>
+    <div class="info">
+        <h4>3D Modeling (Blender / Maya)</h4>
+        <span>90%</span>
+    </div>
     <div class="bar-bg"><div class="bar-fill" data-width="90%"></div></div>
   </div>
   <div class="bar">
-    <h4>Texturing (Substance Painter/Photoshop)</h4>
+     <div class="info">
+        <h4>Texturing (Substance Painter / Photoshop)</h4>
+        <span>85%</span>
+    </div>
     <div class="bar-bg"><div class="bar-fill" data-width="85%"></div></div>
   </div>
    <div class="bar">
-    <h4>Sculpting (ZBrush/Blender)</h4>
+     <div class="info">
+        <h4>Sculpting (ZBrush / Blender)</h4>
+        <span>75%</span>
+    </div>
     <div class="bar-bg"><div class="bar-fill" data-width="75%"></div></div>
   </div>
   <div class="bar">
-    <h4>Rendering (Cycles/Arnold/Eevee)</h4>
+     <div class="info">
+        <h4>Rendering (Cycles / Arnold / Eevee)</h4>
+        <span>80%</span>
+    </div>
     <div class="bar-bg"><div class="bar-fill" data-width="80%"></div></div>
   </div>
    <div class="bar">
-    <h4>Product Design Visualization</h4>
+     <div class="info">
+        <h4>Product Design Visualization</h4>
+        <span>88%</span>
+    </div>
     <div class="bar-bg"><div class="bar-fill" data-width="88%"></div></div>
   </div>
 </section>
@@ -443,23 +529,22 @@
 <!-- Contact Section -->
 <section id="contact" class="contact">
   <h2>Get In Touch</h2>
-  <!-- Remember to replace YOUR_FORM_ID with your actual Formspree ID -->
+  <!-- IMPORTANT: Replace YOUR_FORM_ID with your actual Formspree ID below -->
   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+    <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+    <textarea name="message" rows="6" placeholder="Your Message" required aria-label="Your Message"></textarea>
     <button type="submit">Send Message</button>
   </form>
 </section>
 
 <!-- Lightbox Container -->
 <div class="lightbox" id="lightbox">
-  <img src="" alt="Enlarged Portfolio Item">
+  <img src="" alt="Enlarged portfolio item">
 </div>
 
 <!-- Footer -->
 <footer>
-  <!-- Updated Your Name and Year -->
   © 2024 Charles Ezeike | 3D Artist. All rights reserved.
 </footer>
 
@@ -468,64 +553,71 @@
 
     // --- Hero Text Animation ---
     anime({
-      targets: '#hero-text',
-      translateY: [-30, 0], // Slide down effect
+      targets: 'header h1, header p',
+      translateY: [-20, 0],
       opacity: [0, 1],
-      duration: 1200,
-      delay: 300, // Slight delay
+      delay: anime.stagger(150, {start: 300}),
+      duration: 1000,
       easing: 'easeOutExpo'
     });
+
+    // --- Smooth Scrolling for Nav Links ---
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
 
     // --- Skill Bar Animation on Scroll ---
     const skillsSection = document.querySelector('#skills');
     const skillBars = document.querySelectorAll('.bar-fill');
-    let skillsAnimated = false; // Flag to ensure animation runs only once
+    let skillsAnimated = false;
 
-    function checkSkillsSection() {
-      if (!skillsAnimated) {
-        const rect = skillsSection.getBoundingClientRect();
-        // Animate if the top of the section is within the viewport (adjust offset as needed)
-        if (rect.top < window.innerHeight * 0.8 && rect.bottom >= 0) {
-          skillBars.forEach(bar => {
-            const targetWidth = bar.getAttribute('data-width');
-            anime({
-                targets: bar,
-                width: targetWidth,
-                duration: 1500,
-                easing: 'easeInOutExpo' // Smoother easing
-            });
-          });
-          skillsAnimated = true; // Set flag to true after animating
-          // Optional: remove listener if you ONLY want it to trigger once ever
-          // window.removeEventListener('scroll', checkSkillsSection);
-        }
-      }
+    const skillObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !skillsAnimated) {
+                skillBars.forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-width');
+                    anime({
+                        targets: bar,
+                        width: targetWidth,
+                        duration: 1600,
+                        delay: 150,
+                        easing: 'easeInOutSine'
+                    });
+                });
+                skillsAnimated = true;
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    if (skillsSection) {
+        skillObserver.observe(skillsSection);
     }
 
-    // Initial check in case the section is already visible on load
-    checkSkillsSection();
-    // Add scroll event listener
-    window.addEventListener('scroll', checkSkillsSection);
 
-
-    // --- Love Button Animation ---
+    // --- Love Button ---
     document.querySelectorAll('.love-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent lightbox from opening if button is clicked
-
-        // Simple toggle example (doesn't save state)
+        e.stopPropagation();
+        btn.classList.toggle('loved');
         if (btn.classList.contains('loved')) {
-             btn.classList.remove('loved');
-             btn.innerHTML = '♥'; // Back to outline or default heart
-             // Add logic here if you want to decrease a counter, etc.
+             btn.innerHTML = '💖';
         } else {
-            btn.classList.add('loved');
-            btn.innerHTML = '💖'; // Change heart style on love
-            // Trigger pop animation
-            btn.classList.add('clicked');
-            // Remove animation class after it finishes
-            setTimeout(() => btn.classList.remove('clicked'), 400); // Match animation duration
-            // Add logic here if you want to increase a counter, etc.
+            btn.innerHTML = '♥';
         }
       });
     });
@@ -537,30 +629,32 @@
     const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
 
     lightboxTriggers.forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src; // Set the source of the lightbox image
-        lightboxImg.alt = img.alt; // Copy alt text
-        lightbox.style.display = 'flex'; // Show the lightbox
-        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+      img.addEventListener('click', (e) => {
+         if (e.target.classList.contains('love-btn')) {
+             return;
+         }
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || "Enlarged portfolio image";
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
       });
     });
 
-    // Close lightbox when clicking on the background overlay
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+        lightboxImg.src = "";
+    }
+
     lightbox.addEventListener('click', (e) => {
-      // Only close if the click is directly on the background (not the image)
       if (e.target === lightbox) {
-        lightbox.style.display = 'none'; // Hide the lightbox
-        document.body.style.overflow = ''; // Restore background scrolling
-        lightboxImg.src = ""; // Clear the src to prevent brief display of old image
+        closeLightbox();
       }
     });
 
-     // Optional: Close lightbox with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-             lightbox.style.display = 'none';
-             document.body.style.overflow = '';
-             lightboxImg.src = "";
+             closeLightbox();
         }
     });
 
@@ -568,4 +662,4 @@
 </script>
 
 </body>
-</html>
+        </html>
