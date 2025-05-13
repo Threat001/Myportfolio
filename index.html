@@ -10,11 +10,12 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: linear-gradient(to right, #ffffff, #e0f0ff); color: #000; scroll-behavior: smooth; }
-    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #d0eaff; }
+
     nav { position: fixed; top: 0; width: 100%; background: #00000088; backdrop-filter: blur(10px); padding: 1rem; display: flex; justify-content: center; gap: 2rem; z-index: 999; }
     nav a { color: #fff; text-decoration: none; transition: color 0.3s; }
     nav a:hover { color: #0077ff; }
 
+    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #d0eaff; text-align: center; }
     header h1 { font-size: 3rem; margin-bottom: 10px; }
     header p { font-size: 1.2rem; color: #222; }
 
@@ -26,9 +27,8 @@
     .about-content p { flex: 1; min-width: 250px; font-size: 1rem; color: #333; }
 
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .portfolio-item { background: #ffffff; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; transition: transform 0.3s; }
+    .portfolio-item { background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px #ccc; transition: transform 0.3s; }
     .portfolio-item:hover { transform: scale(1.02); }
-
     .swiper-slide img { width: 100%; border-radius: 8px; }
 
     .skills .bar { margin-bottom: 20px; }
@@ -74,13 +74,11 @@
   <p>Modeling | Texturing | Product Design</p>
 </header>
 
-<section id="about" class="about">
+<section id="about">
   <h2>About Me</h2>
   <div class="about-content">
-    <img src="your-optimized-profile.jpg" alt="My Photo">
-    <p>
-      I’m a passionate 3D artist focused on creating high-quality models, textures, and product designs. With an eye for detail and a love for realism, I bring ideas to life through digital craftsmanship.
-    </p>
+    <img src="your-optimized-profile.jpg" alt="Profile Photo">
+    <p>I’m a passionate 3D artist focused on creating high-quality models, textures, and product designs. With an eye for detail and a love for realism, I bring ideas to life through digital craftsmanship.</p>
   </div>
 </section>
 
@@ -88,24 +86,12 @@
   <h2>Portfolio</h2>
   <div class="portfolio-grid">
 
-    <!-- Project 1 -->
+    <!-- Example Project -->
     <div class="portfolio-item">
       <div class="swiper project-slider">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><a href="render1.html"><img src="render1_view1.png" alt="Render 1 View 1"></a></div>
-          <div class="swiper-slide"><a href="render1.html"><img src="render1_view2.png" alt="Render 1 View 2"></a></div>
-          <div class="swiper-slide"><a href="render1.html"><img src="render1_view3.png" alt="Render 1 View 3"></a></div>
-        </div>
-      </div>
-      <div class="love-btn">Love</div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="portfolio-item">
-      <div class="swiper project-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><a href="render2.html"><img src="render2_view1.png" alt="Render 2 View 1"></a></div>
-          <div class="swiper-slide"><a href="render2.html"><img src="render2_view2.png" alt="Render 2 View 2"></a></div>
+          <div class="swiper-slide"><a href="render1.html"><img src="render1_view1.png" alt="View 1"></a></div>
+          <div class="swiper-slide"><a href="render1.html"><img src="render1_view2.png" alt="View 2"></a></div>
         </div>
       </div>
       <div class="love-btn">Love</div>
@@ -146,7 +132,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script>
-  // Hero animation
   anime({
     targets: '#hero-text',
     translateY: [-50, 0],
@@ -155,24 +140,21 @@
     easing: 'easeOutExpo'
   });
 
-  // Animate skill bars on scroll
   const skillBars = document.querySelectorAll('.bar-fill');
   const skillsSection = document.querySelector('#skills');
   function animateSkills() {
-    const skillsTop = skillsSection.getBoundingClientRect().top;
-    const screenBottom = window.innerHeight;
-    if (skillsTop < screenBottom - 100) {
+    const top = skillsSection.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
       skillBars.forEach(bar => {
-        bar.style.width = bar.getAttribute('data-width');
+        bar.style.width = bar.dataset.width;
       });
       window.removeEventListener('scroll', animateSkills);
     }
   }
   window.addEventListener('scroll', animateSkills);
 
-  // Initialize Swiper sliders
-  document.querySelectorAll('.project-slider').forEach(el => {
-    new Swiper(el, {
+  document.querySelectorAll('.project-slider').forEach(slider => {
+    new Swiper(slider, {
       loop: true,
       autoplay: { delay: 2500, disableOnInteraction: false },
       speed: 600,
@@ -180,7 +162,6 @@
     });
   });
 
-  // Click animation for "Love" buttons
   document.querySelectorAll('.love-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       anime({
