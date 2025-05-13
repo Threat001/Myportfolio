@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -96,63 +95,60 @@
       font-size: 1.8rem;
       transition: color 0.3s;
     }
-    .contact-icons a:hover {color: #66ccff;}
+    .contact-icons a:hover {color: #66ccff;}#lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 2000;
+}
+#lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+#lightbox img {
+  max-width: 90%;
+  max-height: 70%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+}
+#lightbox .caption {
+  color: white;
+  font-size: 1.1rem;
+}
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 2rem;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 2100;
+  transform: translateY(-50%);
+}
+.nav-btn:hover {background: rgba(255,255,255,0.2);}
+#prevBtn {left: 20px;}
+#nextBtn {right: 20px;}
 
-    /* Lightbox Styling */
-    #lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s ease;
-      z-index: 2000;
-    }
-    #lightbox.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    #lightbox img {
-      max-width: 90%;
-      max-height: 70%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      box-shadow: 0 0 25px rgba(255,255,255,0.2);
-    }
-    #lightbox .caption {
-      color: white;
-      font-size: 1.1rem;
-    }
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      font-size: 2rem;
-      color: white;
-      background: rgba(0,0,0,0.3);
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      z-index: 2100;
-      transform: translateY(-50%);
-    }
-    .nav-btn:hover {background: rgba(255,255,255,0.2);}
-    #prevBtn {left: 20px;}
-    #nextBtn {right: 20px;}
+@media(max-width: 768px) {
+  header {flex-direction: column; align-items: flex-start;}
+  .hero h1 {font-size: 2rem;}
+  nav a {margin: 10px 0;}
+}
 
-    @media(max-width: 768px) {
-      header {flex-direction: column; align-items: flex-start;}
-      .hero h1 {font-size: 2rem;}
-      nav a {margin: 10px 0;}
-    }
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo">3D Artist Portfolio</div>
     <nav>
@@ -162,30 +158,13 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>
-
-  <section class="hero" id="hero">
+  </header>  <section class="hero" id="hero">
     <h1 id="intro">Welcome, I'm a 3D Artist</h1>
     <p>I create models, textures, and product designs</p>
-  </section>
-
-  <section id="projects">
+  </section>  <section id="projects">
     <h2>Past Projects</h2>
-    <div class="project-gallery" id="gallery">
-      <!-- Images with captions -->
-      <div class="project-item"><img src="Render1.png" alt="Render 1"></div>
-      <div class="project-item"><img src="Render2.png" alt="Render 2"></div>
-      <div class="project-item"><img src="Render3.png" alt="Render 3"></div>
-      <div class="project-item"><img src="Render4.png" alt="Render 4"></div>
-      <div class="project-item"><img src="Render5.png" alt="Render 5"></div>
-      <div class="project-item"><img src="Render6.png" alt="Render 6"></div>
-      <div class="project-item"><img src="Render7.png" alt="Render 7"></div>
-      <div class="project-item"><img src="Render8.png" alt="Render 8"></div>
-      <div class="project-item"><img src="Render9.png" alt="Render 9"></div>
-    </div>
-  </section>
-
-  <section id="software">
+    <div class="project-gallery" id="gallery"></div>
+  </section>  <section id="software">
     <h2>Software I Use</h2>
     <div class="software">
       <div>Blender</div>
@@ -194,16 +173,12 @@
       <div>ZBrush</div>
       <div>Marvelous Designer</div>
     </div>
-  </section>
-
-  <section id="about">
+  </section>  <section id="about">
     <h2>About Me</h2>
     <p>
       I'm a passionate 3D artist focused on creating detailed models and textures for products, characters, and environments. I love blending creative storytelling with clean, professional execution.
     </p>
-  </section>
-
-  <section id="contact">
+  </section>  <section id="contact">
     <h2>Contact Me</h2>
     <div class="contact-icons">
       <a href="mailto:youremail@example.com" title="Email">✉</a>
@@ -212,17 +187,12 @@
       <a href="https://tiktok.com/" target="_blank" title="TikTok">T</a>
       <a href="https://artstation.com/" target="_blank" title="ArtStation">A</a>
     </div>
-  </section>
-
-  <!-- Lightbox -->
-  <div id="lightbox">
+  </section>  <div id="lightbox">
     <button class="nav-btn" id="prevBtn">&#10094;</button>
     <img src="" alt="">
     <div class="caption"></div>
     <button class="nav-btn" id="nextBtn">&#10095;</button>
-  </div>
-
-  <script>
+  </div>  <script>
     anime({
       targets: '#intro',
       opacity: [0, 1],
@@ -234,8 +204,24 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const caption = lightbox.querySelector('.caption');
-    const images = Array.from(document.querySelectorAll('.project-item img'));
+    const gallery = document.getElementById("gallery");
+    let images = [];
     let currentIndex = 0;
+
+    for (let i = 1; i <= 9; i++) {
+      const container = document.createElement("div");
+      container.className = "project-item";
+
+      const img = document.createElement("img");
+      img.src = `Images/Render${i}.png`;
+      img.alt = `Render ${i}`;
+
+      img.addEventListener('click', () => showLightbox(i - 1));
+      images.push(img);
+
+      container.appendChild(img);
+      gallery.appendChild(container);
+    }
 
     function showLightbox(index) {
       const img = images[index];
@@ -259,10 +245,6 @@
       showLightbox(currentIndex);
     }
 
-    images.forEach((img, index) => {
-      img.addEventListener('click', () => showLightbox(index));
-    });
-
     document.getElementById('nextBtn').addEventListener('click', nextImage);
     document.getElementById('prevBtn').addEventListener('click', prevImage);
     lightbox.addEventListener('click', (e) => {
@@ -274,6 +256,5 @@
       if (e.key === 'ArrowRight') nextImage();
       if (e.key === 'ArrowLeft') prevImage();
     });
-  </script>
-</body>
+  </script></body>
 </html>
