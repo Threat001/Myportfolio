@@ -27,7 +27,7 @@
     header h1 {
       font-size: 24px;
       font-weight: 700;
-      color: #007BFF;
+      color: #007bff;
     }
     nav ul {
       list-style: none;
@@ -40,25 +40,13 @@
       color: #333;
       font-weight: 600;
     }
-    .cta {
-      background-color: #007BFF;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .cta:hover {
-      background-color: #0056b3;
-    }
     .hero {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       padding: 80px 5vw;
-      background-color: #f4f4f4;
+      background-color: #e9f1fb;
       gap: 40px;
     }
     .hero-text {
@@ -99,7 +87,7 @@
     }
     .hero-visual .label {
       position: absolute;
-      background: #007BFF;
+      background: #007bff;
       color: white;
       padding: 6px 12px;
       border-radius: 12px;
@@ -107,75 +95,63 @@
     }
     .label.one { top: 20px; left: 20px; }
     .label.two { bottom: 20px; left: 40px; }
-    .label.three { top: 40%; right: 10px; }@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes fadeInLeft {
-  0% { opacity: 0; transform: translateX(-30px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInRight {
-  0% { opacity: 0; transform: translateX(30px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-.section {
+    .label.three { top: 40%; right: 10px; }.section {
   padding: 60px 5vw;
 }
 .section h3 {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #007BFF;
+  color: #007bff;
 }
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
-.project {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  text-align: center;
-}
-.project img {
+.projects img {
   width: 100%;
   border-radius: 10px;
   transition: transform 0.3s;
   cursor: pointer;
 }
-.project img:hover {
+.projects img:hover {
   transform: scale(1.05);
 }
-.software-list {
+.software-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.software-icons img {
+  width: 60px;
+}
+.about, .contact {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.social-icons {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin-top: 10px;
 }
-.software-item {
-  background: #007BFF;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-.contact-icons a {
-  margin-right: 15px;
-  font-size: 24px;
-  color: #007BFF;
-  text-decoration: none;
+.social-icons img {
+  width: 30px;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
   .hero {
     flex-direction: column;
     text-align: center;
@@ -183,9 +159,6 @@
   }
   .hero-text h2 {
     font-size: 32px;
-  }
-  .hero-visual img {
-    margin: 0 auto;
   }
 }
 
@@ -197,18 +170,17 @@
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <a href="#" class="cta">Get a Quote</a>
   </header>  <section class="hero">
     <div class="hero-text">
       <h2>Bring Your Ideas to Life in 3D</h2>
       <p>Crafting stunning product renders, animations, and visual concepts using advanced 3D tools and a creative edge.</p>
-      <a href="#" class="cta">View Portfolio →</a>
+      <a href="#portfolio" class="cta">View Portfolio →</a>
       <div class="stats">
         <div>100+ Projects</div>
         <div>50+ Happy Clients</div>
@@ -221,38 +193,39 @@
       <div class="label two">Photoreal Rendering</div>
       <div class="label three">Animated for Brands</div>
     </div>
-  </section>  <section class="section">
+  </section>  <section id="portfolio" class="section">
     <h3>Past Projects</h3>
     <div class="projects">
-      <div class="project"><img src="Images/Render1.png" alt="Render1"></div>
-      <div class="project"><img src="Images/Render2.png" alt="Render2"></div>
-      <div class="project"><img src="Images/Render3.png" alt="Render3"></div>
-      <div class="project"><img src="Images/Render4.png" alt="Render4"></div>
-      <div class="project"><img src="Images/Render5.png" alt="Render5"></div>
-      <div class="project"><img src="Images/Render6.png" alt="Render6"></div>
-      <div class="project"><img src="Images/Render7.png" alt="Render7"></div>
-      <div class="project"><img src="Images/Render8.png" alt="Render8"></div>
-      <div class="project"><img src="Images/Render9.png" alt="Render9"></div>
+      <img src="Images/Render1.png" alt="Render1">
+      <img src="Images/Render2.png" alt="Render2">
+      <img src="Images/Render3.png" alt="Render3">
+      <img src="Images/Render4.png" alt="Render4">
+      <img src="Images/Render5.png" alt="Render5">
+      <img src="Images/Render6.png" alt="Render6">
+      <img src="Images/Render7.png" alt="Render7">
+      <img src="Images/Render8.png" alt="Render8">
+      <img src="Images/Render9.png" alt="Render9">
     </div>
-  </section>  <section class="section">
+  </section>  <section id="software" class="section">
     <h3>Software I Use</h3>
-    <div class="software-list">
-      <div class="software-item">Blender</div>
-      <div class="software-item">Substance Painter</div>
-      <div class="software-item">Photoshop</div>
-      <div class="software-item">Illustrator</div>
-      <div class="software-item">Fusion 360</div>
+    <div class="software-icons">
+      <img src="Icons/blender.png" alt="Blender">
+      <img src="Icons/zbrush.png" alt="ZBrush">
+      <img src="Icons/unreal engine.png" alt="Unreal Engine">
     </div>
-  </section>  <section class="section">
+  </section>  <section id="about" class="section about">
     <h3>About Me</h3>
-    <p>I am a 3D artist specializing in modeling, texturing, and product design. I bring your ideas to life through realistic renders and interactive visual presentations. My work spans a variety of industries from tech to fashion to architecture.</p>
-  </section>  <section class="section">
+    <p>I am a passionate 3D artist focused on creating high-quality models, textures, and product designs. My workflow combines creative vision with technical skill to deliver compelling visual content.</p>
+  </section>  <section id="contact" class="section contact">
     <h3>Contact Me</h3>
-    <div class="contact-icons">
-      <a href="#" title="Email">✉️</a>
-      <a href="#" title="Facebook">📘</a>
-      <a href="#" title="Instagram">📸</a>
-      <a href="#" title="TikTok">🎵</a>
+    <div class="social-icons">
+      <a href="#"><img src="Icons/mail.png" alt="Email"></a>
+      <a href="#"><img src="Icons/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="Icons/whatsapp.png" alt="WhatsApp"></a>
+      <a href="#"><img src="Icons/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="Icons/x.png" alt="X"></a>
+      <a href="#"><img src="Icons/tiktok.png" alt="TikTok"></a>
+      <a href="#"><img src="Icons/linkedin.png" alt="LinkedIn"></a>
     </div>
   </section>
 </body>
