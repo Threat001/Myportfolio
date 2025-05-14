@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Artist Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threat3D Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -27,7 +27,7 @@
     header h1 {
       font-size: 24px;
       font-weight: 700;
-      color: #ff6b00;
+      color: #007BFF;
     }
     nav ul {
       list-style: none;
@@ -38,10 +38,10 @@
     nav a {
       text-decoration: none;
       color: #333;
-      font-weight: 500;
+      font-weight: 600;
     }
     .cta {
-      background-color: #ff6b00;
+      background-color: #007BFF;
       color: #fff;
       padding: 10px 20px;
       border-radius: 8px;
@@ -50,7 +50,7 @@
       transition: background 0.3s ease;
     }
     .cta:hover {
-      background-color: #e85c00;
+      background-color: #0056b3;
     }
     .hero {
       display: flex;
@@ -99,7 +99,7 @@
     }
     .hero-visual .label {
       position: absolute;
-      background: #ff6b00;
+      background: #007BFF;
       color: white;
       padding: 6px 12px;
       border-radius: 12px;
@@ -122,7 +122,60 @@
   100% { opacity: 1; transform: translateX(0); }
 }
 
+.section {
+  padding: 60px 5vw;
+}
+.section h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #007BFF;
+}
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.project {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.project img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.project img:hover {
+  transform: scale(1.05);
+}
+.software-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.software-item {
+  background: #007BFF;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.contact-icons a {
+  margin-right: 15px;
+  font-size: 24px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
   .hero {
     flex-direction: column;
     text-align: center;
@@ -150,6 +203,7 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
+    <a href="#" class="cta">Get a Quote</a>
   </header>  <section class="hero">
     <div class="hero-text">
       <h2>Bring Your Ideas to Life in 3D</h2>
@@ -167,30 +221,38 @@
       <div class="label two">Photoreal Rendering</div>
       <div class="label three">Animated for Brands</div>
     </div>
-  </section>  <!-- Portfolio Section -->  <section class="portfolio">
-    <h2 style="text-align: center; margin-top: 60px; font-size: 32px; font-weight: 700;">Featured Work</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 40px 5vw;">
-      <div style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-        <img src="https://via.placeholder.com/600x400.png?text=Project+1" alt="Project 1" style="width: 100%;">
-        <div style="padding: 20px;">
-          <h3 style="font-size: 20px; font-weight: 600;">Product Visualization</h3>
-          <p style="color: #666; font-size: 16px; margin-top: 10px;">Clean, realistic product renders that showcase form and function.</p>
-        </div>
-      </div>
-      <div style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-        <img src="https://via.placeholder.com/600x400.png?text=Project+2" alt="Project 2" style="width: 100%;">
-        <div style="padding: 20px;">
-          <h3 style="font-size: 20px; font-weight: 600;">3D Animation</h3>
-          <p style="color: #666; font-size: 16px; margin-top: 10px;">Dynamic motion graphics that bring your ideas to life.</p>
-        </div>
-      </div>
-      <div style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-        <img src="https://via.placeholder.com/600x400.png?text=Project+3" alt="Project 3" style="width: 100%;">
-        <div style="padding: 20px;">
-          <h3 style="font-size: 20px; font-weight: 600;">Brand Showcase</h3>
-          <p style="color: #666; font-size: 16px; margin-top: 10px;">Immersive 3D visuals crafted to highlight your brand’s story.</p>
-        </div>
-      </div>
+  </section>  <section class="section">
+    <h3>Past Projects</h3>
+    <div class="projects">
+      <div class="project"><img src="Images/Render1.png" alt="Render1"></div>
+      <div class="project"><img src="Images/Render2.png" alt="Render2"></div>
+      <div class="project"><img src="Images/Render3.png" alt="Render3"></div>
+      <div class="project"><img src="Images/Render4.png" alt="Render4"></div>
+      <div class="project"><img src="Images/Render5.png" alt="Render5"></div>
+      <div class="project"><img src="Images/Render6.png" alt="Render6"></div>
+      <div class="project"><img src="Images/Render7.png" alt="Render7"></div>
+      <div class="project"><img src="Images/Render8.png" alt="Render8"></div>
+      <div class="project"><img src="Images/Render9.png" alt="Render9"></div>
+    </div>
+  </section>  <section class="section">
+    <h3>Software I Use</h3>
+    <div class="software-list">
+      <div class="software-item">Blender</div>
+      <div class="software-item">Substance Painter</div>
+      <div class="software-item">Photoshop</div>
+      <div class="software-item">Illustrator</div>
+      <div class="software-item">Fusion 360</div>
+    </div>
+  </section>  <section class="section">
+    <h3>About Me</h3>
+    <p>I am a 3D artist specializing in modeling, texturing, and product design. I bring your ideas to life through realistic renders and interactive visual presentations. My work spans a variety of industries from tech to fashion to architecture.</p>
+  </section>  <section class="section">
+    <h3>Contact Me</h3>
+    <div class="contact-icons">
+      <a href="#" title="Email">✉️</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Instagram">📸</a>
+      <a href="#" title="TikTok">🎵</a>
     </div>
   </section>
 </body>
