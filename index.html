@@ -1,189 +1,288 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Threat3D Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Charles Ezeike - 3D Portfolio</title>
   <style>
+    :root {
+      --yellow: #fdd835;
+      --light-yellow: #fffde7;
+      --lighter-yellow: #fff9c4;
+      --text-color: #000;
+      --bg-color: #fff;
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8f8f8;
-      color: #1e1e1e;
+      font-family: sans-serif;
+      margin: 0;
+      color: var(--text-color);
+      background-color: var(--bg-color);
     }
+
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 5vw;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      flex-wrap: wrap;
-    }
-    header h1 {
-      font-size: 24px;
-      font-weight: 700;
-      color: #007bff;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-    }
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      padding: 80px 5vw;
-      background-color: #f4f4f4;
-      gap: 40px;
-    }
-    .hero-text {
-      flex: 1 1 400px;
-    }
-    .hero-text h2 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-    .hero-text p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: #555;
-    }
-    .hero-visual {
-      flex: 1 1 300px;
-      position: relative;
-    }
-    .hero-visual img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    .projects {
-      padding: 60px 5vw;
-    }
-    .projects h2 {
+      background-color: var(--yellow);
+      color: var(--text-color);
+      padding: 20px;
       text-align: center;
-      margin-bottom: 40px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    .project-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .project-gallery img {
-      width: 100%;
-      border-radius: 10px;
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 2px solid var(--text-color);
+      padding: 5px 10px;
       cursor: pointer;
+      font-size: 18px;
     }
-    .software, .about, .contact {
-      padding: 60px 5vw;
+
+    nav {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+      flex-direction: column;
+      width: 100%;
+      background-color: var(--yellow);
     }
-    .software h2, .about h2, .contact h2 {
+
+    nav.open {
+      max-height: 300px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      nav {
+        max-height: none;
+        overflow: visible;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 0 15px;
+      }
+    }
+
+    .hero {
+      background: linear-gradient(to right, var(--light-yellow), var(--yellow));
       text-align: center;
-      margin-bottom: 30px;
+      padding: 80px 20px;
     }
-    .software-icons, .contact-icons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+
+    .hero h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid var(--text-color);
+      white-space: nowrap;
+      animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+      font-size: 28px;
+      display: inline-block;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--text-color); }
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-light {
+      background-color: var(--light-yellow);
+    }
+
+    .section-dark {
+      background-color: var(--lighter-yellow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
-    .software-icons img, .contact-icons img {
-      width: 40px;
-      height: 40px;
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--yellow);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
     }
-    .about p {
-      max-width: 600px;
-      margin: 0 auto;
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      background-color: #fbc02d;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button-secondary {
+      background-color: transparent;
+      color: #fbc02d;
+      border: 1px solid #fbc02d;
+    }
+
+    footer {
+      background-color: var(--yellow);
       text-align: center;
-      font-size: 16px;
-      color: #444;
+      padding: 20px;
     }
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-      .hero-visual img {
-        margin: 0 auto;
-      }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Threat3D</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#projects">Portfolio</a></li>
-        <li><a href="#software">Software</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <h1>Charles Ezeike Portfolio</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
+    <nav id="nav">
+      <a href="#hero">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </header>  <section class="hero">
-    <div class="hero-text">
-      <h2>Bring Your Ideas to Life in 3D</h2>
-      <p>Crafting stunning product renders, animations, and visual concepts using advanced 3D tools and a creative edge.</p>
-      <div class="stats">
-        <div>100+ Projects</div>
-        <div>50+ Happy Clients</div>
-        <div>10+ Years Experience</div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <img src="https://via.placeholder.com/400x500.png?text=3D+Render" alt="3D Render Preview">
-    </div>
-  </section>  <section class="projects" id="projects">
-    <h2>Past Projects</h2>
-    <div class="project-gallery">
-      <img src="Images/Render1.png" alt="Render1">
-      <img src="Images/Render2.png" alt="Render2">
-      <img src="Images/Render3.png" alt="Render3">
-      <img src="Images/Render4.png" alt="Render4">
-      <img src="Images/Render5.png" alt="Render5">
-      <img src="Images/Render6.png" alt="Render6">
-      <img src="Images/Render7.png" alt="Render7">
-      <img src="Images/Render8.png" alt="Render8">
-      <img src="Images/Render9.png" alt="Render9">
-    </div>
-  </section>  <section class="software" id="software">
-    <h2>Software I Use</h2>
-    <div class="software-icons">
-      <img src="Icon/blender.png" alt="Blender">
-      <img src="Icon/zbrush.png" alt="ZBrush">
-      <img src="Icon/unreal engine.png" alt="Unreal Engine">
-    </div>
-  </section>  <section class="about" id="about">
-    <h2>About Me</h2>
-    <p>I’m a 3D artist passionate about creating detailed models, realistic textures, and impactful product designs. With years of experience and a strong design foundation, I turn concepts into visual reality.</p>
-  </section>  <section class="contact" id="contact">
-    <h2>Contact Me</h2>
-    <div class="contact-icons">
-      <a href="#"><img src="Icon/mail.png" alt="Email"></a>
-      <a href="#"><img src="Icon/instagram.png" alt="Instagram"></a>
-      <a href="#"><img src="Icon/facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="Icon/tiktok.png" alt="TikTok"></a>
-      <a href="#"><img src="Icon/whatsapp.png" alt="WhatsApp"></a>
-      <a href="#"><img src="Icon/x.png" alt="X"></a>
-      <a href="#"><img src="Icon/linkedin.png" alt="LinkedIn"></a>
+  </header>
+
+  <div class="hero" id="hero">
+    <div class="typewriter">Welcome to Charles Ezeike's Portfolio. I am a 3D Artist.</div>
+    <p>Design. Animate. Inspire.</p>
+  </div>
+
+  <section class="section-dark" id="about">
+    <div class="container reveal">
+      <h2>About Me</h2>
+      <p>I’m Charles Ezeike, a 3D designer passionate about crafting immersive visuals and interactive digital experiences. Explore my portfolio to see what I can bring to your project.</p>
     </div>
   </section>
+
+  <section class="section-light" id="projects">
+    <div class="container reveal">
+      <h2>Projects</h2>
+      <div class="grid" id="projects-grid">
+        <!-- Project cards will be inserted here by JS -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark" id="contact">
+    <div class="container reveal">
+      <h2>Contact</h2>
+      <p>Let’s connect and bring your ideas to life.</p>
+      <a href="mailto:charlesezeike8@gmail.com" class="button-secondary">Email Me</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Charles Ezeike</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("nav");
+      nav.classList.toggle("open");
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      reveals.forEach(reveal => {
+        const top = reveal.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          reveal.classList.add("active");
+        } else {
+          reveal.classList.remove("active");
+        }
+      });
+    });
+
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".reveal").forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
+          el.classList.add("active");
+        }
+      });
+
+      // Add project cards dynamically
+      const grid = document.getElementById("projects-grid");
+      for (let i = 1; i <= 9; i++) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="Render${i}.png" alt="Render ${i}">
+          <h3>Project ${i}</h3>
+          <p>Description of project ${i}.</p>
+          <a href="#" class="button">View More</a>
+        `;
+        grid.appendChild(card);
+      }
+    });
+  </script>
 </body>
 </html>
