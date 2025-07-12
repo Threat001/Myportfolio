@@ -1,288 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charles Ezeike - 3D Portfolio</title>
-  <style>
-    :root {
-      --yellow: #fdd835;
-      --light-yellow: #fffde7;
-      --lighter-yellow: #fff9c4;
-      --text-color: #000;
-      --bg-color: #fff;
-    }
-
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      color: var(--text-color);
-      background-color: var(--bg-color);
-    }
-
-    header {
-      background-color: var(--yellow);
-      color: var(--text-color);
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: 2px solid var(--text-color);
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    nav {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.5s ease;
-      flex-direction: column;
-      width: 100%;
-      background-color: var(--yellow);
-    }
-
-    nav.open {
-      max-height: 300px;
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-    }
-
-    @media (min-width: 769px) {
-      .menu-toggle {
-        display: none;
-      }
-
-      nav {
-        max-height: none;
-        overflow: visible;
-        display: flex !important;
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 0 15px;
-      }
-    }
-
-    .hero {
-      background: linear-gradient(to right, var(--light-yellow), var(--yellow));
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin: 0;
-    }
-
-    .hero p {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-
-    .typewriter {
-      overflow: hidden;
-      border-right: .15em solid var(--text-color);
-      white-space: nowrap;
-      animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
-      font-size: 28px;
-      display: inline-block;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: var(--text-color); }
-    }
-
-    section {
-      padding: 40px 0;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-light {
-      background-color: var(--light-yellow);
-    }
-
-    .section-dark {
-      background-color: var(--lighter-yellow);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid var(--yellow);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .button {
-      background-color: #fbc02d;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .button-secondary {
-      background-color: transparent;
-      color: #fbc02d;
-      border: 1px solid #fbc02d;
-    }
-
-    footer {
-      background-color: var(--yellow);
-      text-align: center;
-      padding: 20px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <title>Project Breakdown - Cyberpunk Character</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="case-study">
+    <header class="case-header">
+      <h1>Cyberpunk Character Design</h1>
+      <p class="subtitle">From concept to final render</p>
+    </header>
 
-  <header>
-    <h1>Charles Ezeike Portfolio</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
-    <nav id="nav">
-      <a href="#hero">Home</a>
-      <a href="#about">About Me</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <div class="hero" id="hero">
-    <div class="typewriter">Welcome to Charles Ezeike's Portfolio. I am a 3D Artist.</div>
-    <p>Design. Animate. Inspire.</p>
-  </div>
-
-  <section class="section-dark" id="about">
-    <div class="container reveal">
-      <h2>About Me</h2>
-      <p>I’m Charles Ezeike, a 3D designer passionate about crafting immersive visuals and interactive digital experiences. Explore my portfolio to see what I can bring to your project.</p>
-    </div>
-  </section>
-
-  <section class="section-light" id="projects">
-    <div class="container reveal">
-      <h2>Projects</h2>
-      <div class="grid" id="projects-grid">
-        <!-- Project cards will be inserted here by JS -->
+    <section class="breakdown">
+      <div class="breakdown-step">
+        <h2>Concept Phase</h2>
+        <model-viewer src="models/concept-blockout.glb" alt="Concept Blockout"></model-viewer>
+        <p>Initial silhouette exploration in ZBrush...</p>
       </div>
-    </div>
-  </section>
 
-  <section class="section-dark" id="contact">
-    <div class="container reveal">
-      <h2>Contact</h2>
-      <p>Let’s connect and bring your ideas to life.</p>
-      <a href="mailto:charlesezeike8@gmail.com" class="button-secondary">Email Me</a>
-    </div>
-  </section>
+      <div class="breakdown-step">
+        <h2>Topology</h2>
+        <div class="comparison-slider">
+          <img src="images/topology-wire.jpg" alt="Wireframe">
+          <img src="images/topology-clean.jpg" alt="Final Topology">
+        </div>
+      </div>
 
-  <footer>
-    <p>&copy; 2025 Charles Ezeike</p>
-  </footer>
+      <div class="breakdown-step">
+        <h2>Final Render</h2>
+        <model-viewer 
+          src="models/final-character.glb" 
+          camera-controls 
+          auto-rotate
+          ar>
+        </model-viewer>
+        <p>Rendered in Marmoset Toolbag with 4K PBR textures...</p>
+      </div>
+    </section>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById("nav");
-      nav.classList.toggle("open");
-    }
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll(".reveal");
-    window.addEventListener("scroll", () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      reveals.forEach(reveal => {
-        const top = reveal.getBoundingClientRect().top;
-        if (top < triggerBottom) {
-          reveal.classList.add("active");
-        } else {
-          reveal.classList.remove("active");
-        }
-      });
-    });
-
-    window.addEventListener("load", () => {
-      document.querySelectorAll(".reveal").forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
-          el.classList.add("active");
-        }
-      });
-
-      // Add project cards dynamically
-      const grid = document.getElementById("projects-grid");
-      for (let i = 1; i <= 9; i++) {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="Render${i}.png" alt="Render ${i}">
-          <h3>Project ${i}</h3>
-          <p>Description of project ${i}.</p>
-          <a href="#" class="button">View More</a>
-        `;
-        grid.appendChild(card);
-      }
-    });
-  </script>
+    <section class="project-specs">
+      <h3>Technical Details</h3>
+      <ul>
+        <li><strong>Software:</strong> ZBrush, Maya, Substance Painter</li>
+        <li><strong>Polycount:</strong> 35k tris</li>
+        <li><strong>Textures:</strong> 4K PBR (Metallic/Roughness)</li>
+      </ul>
+    </section>
+  </div>
 </body>
 </html>
