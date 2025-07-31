@@ -8,6 +8,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Temporary inline CSS - Should be moved to styles.css */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            text-align: center;
+        }
+        
+        .profile-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -27,7 +60,6 @@
             </nav>
         </div>
     </header>
-    
 
     <main>
         <section class="hero hero-about">
@@ -47,7 +79,7 @@
                         <p>When I'm not crafting 3D models, you can find me experimenting with new rendering techniques, studying real-world materials, or mentoring aspiring 3D artists.</p>
                     </div>
                     <div class="about-image">
-                        <div class="image-frame"></div>
+                        <img src="images/charles-ezeike-profile.jpg" alt="Charles Ezeike - 3D Artist" class="profile-image">
                     </div>
                 </div>
             </div>
@@ -136,4 +168,4 @@
     <script src="js/main.js"></script>
     <script src="js/scroll.js"></script>
 </body>
-</html>
+                                </html>
