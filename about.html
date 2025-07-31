@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Temporary inline CSS - Should be moved to styles.css */
+        /* About Section Styling */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -20,6 +20,11 @@
         .about-image {
             position: relative;
             text-align: center;
+            order: 2; /* Image on right for desktop */
+        }
+        
+        .about-content {
+            order: 1; /* Text on left for desktop */
         }
         
         .profile-image {
@@ -35,9 +40,21 @@
             transform: scale(1.02);
         }
         
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .about-grid {
                 grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: 1; /* Image first on mobile */
+            }
+            
+            .about-content {
+                order: 2; /* Text second on mobile */
+                margin-top: 30px;
             }
         }
     </style>
@@ -72,19 +89,20 @@
         <section class="section about-section">
             <div class="container">
                 <div class="about-grid">
+                    <div class="about-image">
+                        <img src="Images/charles-ezeike-profile.jpg" alt="Charles Ezeike - 3D Artist" class="profile-image">
+                    </div>
                     <div class="about-content">
                         <h2>I'm a 3D artist with expertise in modeling, texturing, and product design.</h2>
                         <p>I create high-quality assets for both stylized and realistic visuals, tailored for commercial, digital, and product visualization projects.</p>
                         <p>With over 5 years of professional experience, I've worked with clients across various industries to bring their concepts to life in three dimensions. My passion lies in the intersection of art and technology, where I can push the boundaries of what's possible in digital creation.</p>
                         <p>When I'm not crafting 3D models, you can find me experimenting with new rendering techniques, studying real-world materials, or mentoring aspiring 3D artists.</p>
                     </div>
-                    <div class="about-image">
-                        <img src="Images/charles-ezeike-profile.jpg" alt="Charles Ezeike - 3D Artist" class="profile-image">
-                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Rest of your content remains unchanged -->
         <section class="section skills-section">
             <div class="container">
                 <div class="section-header">
@@ -168,4 +186,4 @@
     <script src="js/main.js"></script>
     <script src="js/scroll.js"></script>
 </body>
-                                </html>
+</html>
