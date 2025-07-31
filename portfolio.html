@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Threat3D</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Threat<span>3D</span></a>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a href="services.html">Services</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main>
+        <section class="hero hero-portfolio">
+            <div class="container">
+                <h1 class="hero-title">Portfolio</h1>
+                <p class="hero-subtitle">A showcase of my 3D artwork</p>
+            </div>
+        </section>
+
+        <section class="section portfolio-section">
+            <div class="container">
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="product">Product Design</button>
+                    <button class="filter-btn" data-filter="character">Characters</button>
+                    <button class="filter-btn" data-filter="environment">Environments</button>
+                    <button class="filter-btn" data-filter="stylized">Stylized</button>
+                </div>
+
+                <div class="portfolio-grid">
+                    <!-- Portfolio items will be added dynamically via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for full-size images -->
+        <div class="modal" id="portfolio-modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <img id="modal-image" src="" alt="">
+                <div class="modal-info">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-description"></p>
+                    <div class="modal-meta">
+                        <span id="modal-software"></span>
+                        <span id="modal-year"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Threat3D</h3>
+                    <p>Creating exceptional 3D art for clients worldwide.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="social-links">
+                        <li><a href="#" target="_blank">ArtStation</a></li>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Threat3D. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/anime.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/scroll.js"></script>
+    <script>
+        // Portfolio data
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "Cyberpunk Character",
+                category: "character",
+                description: "A high-detail cyberpunk character with intricate armor and lighting effects.",
+                software: "Blender, Substance Painter",
+                year: "2023",
+                thumb: "assets/images/character1-thumb.jpg",
+                full: "assets/images/character1-full.jpg"
+            },
+            {
+                id: 2,
+                title: "Product Visualization",
+                category: "product",
+                description: "Photorealistic render of a high-end audio device for product marketing.",
+                software: "Maya, Arnold",
+                year: "2022",
+                thumb: "assets/images/product1-thumb.jpg",
+                full: "assets/images/product1-full.jpg"
+            },
+            {
+                id: 3,
+                title: "Fantasy Environment",
+                category: "environment",
+                description: "Stylized fantasy landscape with custom vegetation and lighting.",
+                software: "Blender, Unreal Engine",
+                year: "2023",
+                thumb: "assets/images/environment1-thumb.jpg",
+                full: "assets/images/environment1-full.jpg"
+            },
+            {
+                id: 4,
+                title: "Sci-Fi Weapon",
+                category: "product",
+                description: "Hard surface modeling of a futuristic weapon with detailed textures.",
+                software: "Blender, Substance Painter",
+                year: "2023",
+                thumb: "assets/images/product2-thumb.jpg",
+                full: "assets/images/product2-full.jpg"
+            },
+            {
+                id: 5,
+                title: "Stylized Creature",
+                category: "character",
+                description: "Cartoon-style creature with exaggerated proportions and vibrant colors.",
+                software: "ZBrush, Substance Painter",
+                year: "2022",
+                thumb: "assets/images/character2-thumb.jpg",
+                full: "assets/images/character2-full.jpg"
+            },
+            {
+                id: 6,
+                title: "Arch Viz Interior",
+                category: "environment",
+                description: "Modern interior space with realistic materials and lighting.",
+                software: "3ds Max, Corona",
+                year: "2021",
+                thumb: "assets/images/environment2-thumb.jpg",
+                full: "assets/images/environment2-full.jpg"
+            },
+            {
+                id: 7,
+                title: "Stylized Prop Set",
+                category: "stylized",
+                description: "Collection of stylized game assets with hand-painted textures.",
+                software: "Blender, Substance Painter",
+                year: "2023",
+                thumb: "assets/images/stylized1-thumb.jpg",
+                full: "assets/images/stylized1-full.jpg"
+            },
+            {
+                id: 8,
+                title: "Vehicle Design",
+                category: "product",
+                description: "Concept to final model of a futuristic vehicle with clean topology.",
+                software: "Blender, Substance Painter",
+                year: "2022",
+                thumb: "assets/images/product3-thumb.jpg",
+                full: "assets/images/product3-full.jpg"
+            }
+        ];
+
+        // Initialize portfolio grid
+        document.addEventListener('DOMContentLoaded', function() {
+            const portfolioGrid = document.querySelector('.portfolio-grid');
+            
+            // Create portfolio items
+            portfolioItems.forEach(item => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = `portfolio-item ${item.category}`;
+                portfolioItem.dataset.category = item.category;
+                portfolioItem.innerHTML = `
+                    <div class="portfolio-item-inner">
+                        <img src="${item.thumb}" alt="${item.title}">
+                        <div class="portfolio-overlay">
+                            <h3>${item.title}</h3>
+                            <span class="portfolio-category">${item.category}</span>
+                        </div>
+                    </div>
+                `;
+                portfolioItem.addEventListener('click', () => openModal(item));
+                portfolioGrid.appendChild(portfolioItem);
+            });
+
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter items
+                    const filter = button.dataset.filter;
+                    const items = document.querySelectorAll('.portfolio-item');
+                    
+                    items.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Modal functionality
+        function openModal(item) {
+            const modal = document.getElementById('portfolio-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-description');
+            const modalSoftware = document.getElementById('modal-software');
+            const modalYear = document.getElementById('modal-year');
+            
+            modalImg.src = item.full;
+            modalImg.alt = item.title;
+            modalTitle.textContent = item.title;
+            modalDesc.textContent = item.description;
+            modalSoftware.textContent = item.software;
+            modalYear.textContent = item.year;
+            
+            modal.style.display = "block";
+            
+            // Close modal
+            const closeBtn = document.querySelector('.modal-close');
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            // Close when clicking outside
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

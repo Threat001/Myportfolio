@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload | Threat3D Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Threat<span>3D</span></a>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a href="services.html">Services</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main>
+        <section class="hero hero-upload">
+            <div class="container">
+                <h1 class="hero-title">Upload Files</h1>
+                <p class="hero-subtitle">Private file upload area</p>
+            </div>
+        </section>
+
+        <section class="section upload-section">
+            <div class="container">
+                <div class="upload-container">
+                    <h2>Upload New Files</h2>
+                    <p class="upload-notice">This area is for authorized personnel only. All uploads are logged.</p>
+                    
+                    <form id="uploadForm" class="upload-form">
+                        <div class="form-group">
+                            <label for="projectName">Project Name</label>
+                            <input type="text" id="projectName" name="projectName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fileDescription">File Description</label>
+                            <textarea id="fileDescription" name="fileDescription" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fileUpload">Select Files</label>
+                            <input type="file" id="fileUpload" name="fileUpload" multiple required>
+                            <div class="file-drop-area" id="fileDropArea">
+                                <span class="file-msg">Drag & drop files here or click to browse</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="confidential" required>
+                                I confirm these files do not contain sensitive or confidential information
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Upload Files</button>
+                    </form>
+                    
+                    <div id="uploadProgress" class="upload-progress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span id="progressText">0%</span>
+                    </div>
+                    
+                    <div id="uploadSuccess" class="upload-success" style="display: none;">
+                        <h3>Upload Complete!</h3>
+                        <p>Your files have been successfully uploaded.</p>
+                        <ul id="uploadedFilesList"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Threat3D</h3>
+                    <p>Creating exceptional 3D art for clients worldwide.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="social-links">
+                        <li><a href="#" target="_blank">ArtStation</a></li>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Threat3D. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/anime.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Upload form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileDropArea = document.getElementById('fileDropArea');
+            const fileInput = document.getElementById('fileUpload');
+            const uploadForm = document.getElementById('uploadForm');
+            const uploadProgress = document.getElementById('uploadProgress');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const uploadSuccess = document.getElementById('uploadSuccess');
+            const uploadedFilesList = document.getElementById('uploadedFilesList');
+            
+            // Drag and drop functionality
+            fileDropArea.addEventListener('click', () => fileInput.click());
+            
+            fileDropArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileDropArea.classList.add('dragover');
+            });
+            
+            fileDropArea.addEventListener('dragleave', () => {
+                fileDropArea.classList.remove('dragover');
+            });
+            
+            fileDropArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileDropArea.classList.remove('dragover');
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    updateFileMessage();
+                }
+            });
+            
+            fileInput.addEventListener('change', updateFileMessage);
+            
+            function updateFileMessage() {
+                if (fileInput.files.length > 0) {
+                    let fileNames = [];
+                    for (let i = 0; i < fileInput.files.length; i++) {
+                        fileNames.push(fileInput.files[i].name);
+                    }
+                    fileDropArea.querySelector('.file-msg').textContent = 
+                        fileNames.join(', ') + (fileNames.length > 3 ? '...' : '');
+                }
+            }
+            
+            // Form submission (simulated)
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show progress bar
+                uploadProgress.style.display = 'flex';
+                
+                // Simulate upload progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress > 100) progress = 100;
+                    
+                    progressFill.style.width = `${progress}%`;
+                    progressText.textContent = `${Math.round(progress)}%`;
+                    
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        setTimeout(showSuccess, 500);
+                    }
+                }, 200);
+            });
+            
+            function showSuccess() {
+                uploadProgress.style.display = 'none';
+                uploadForm.style.display = 'none';
+                uploadSuccess.style.display = 'block';
+                
+                // List uploaded files
+                uploadedFilesList.innerHTML = '';
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    const li = document.createElement('li');
+                    li.textContent = fileInput.files[i].name;
+                    uploadedFilesList.appendChild(li);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

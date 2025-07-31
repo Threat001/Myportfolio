@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Threat3D Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Threat<span>3D</span></a>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Home</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a href="services.html">Services</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main>
+        <section class="hero hero-contact">
+            <div class="container">
+                <h1 class="hero-title">Get In Touch</h1>
+                <p class="hero-subtitle">Let's discuss your next project</p>
+            </div>
+        </section>
+
+        <section class="section contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <h2>Send a Message</h2>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h2>Contact Info</h2>
+                        <p>Feel free to reach out through any of these channels:</p>
+                        
+                        <div class="info-item">
+                            <h3>Email</h3>
+                            <p><a href="mailto:charlesezeike0@gmail.com">charlesezeike0@gmail.com</a></p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>Social Media</h3>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/chartechsstudio" target="_blank" class="social-link">
+                                    <svg class="social-icon"><use xlink:href="assets/icons/social-icons.svg#instagram"></use></svg>
+                                    Instagram
+                                </a>
+                                <a href="https://www.artstation.com/chartechsstudio1" target="_blank" class="social-link">
+                                    <svg class="social-icon"><use xlink:href="assets/icons/social-icons.svg#artstation"></use></svg>
+                                    ArtStation
+                                </a>
+                                <a href="https://www.linkedin.com/in/ezeike-charles-a3516218b" target="_blank" class="social-link">
+                                    <svg class="social-icon"><use xlink:href="assets/icons/social-icons.svg#linkedin"></use></svg>
+                                    LinkedIn
+                                </a>
+                                <a href="https://x.com/Threat3D" target="_blank" class="social-link">
+                                    <svg class="social-icon"><use xlink:href="assets/icons/social-icons.svg#twitter"></use></svg>
+                                    Twitter/X
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>Availability</h3>
+                            <p>Monday - Friday: 9am - 5pm EST</p>
+                            <p>Response time: 1-2 business days</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Threat3D</h3>
+                    <p>Creating exceptional 3D art for clients worldwide.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="social-links">
+                        <li><a href="#" target="_blank">ArtStation</a></li>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Threat3D. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/anime.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/scroll.js"></script>
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just log it and show an alert
+            console.log({name, email, subject, message});
+            
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
